@@ -21,7 +21,14 @@ class DeviceTimeout(Exception):
 
 def open_serial(port, baud=921600):
     import serial  # solo necesario con hardware
-    return serial.Serial(port, baud, timeout=0, write_timeout=0.1)
+    s = serial.Serial(None, baud, timeout=0, write_timeout=0.1)
+    s.port = port
+    # DTR y RTS en reposo antes de abrir: el circuito de autoreinicio de las DevKit deja EN e IO0 altos, sin reinicio
+    # ni modo de grabacion. pyserial los activa por defecto al abrir y la placa podria reiniciarse en mitad de la medida.
+    s.dtr = s.rts = False
+    s.open()
+    s.reset_input_buffer()
+    return s
 
 
 class DeviceLink:

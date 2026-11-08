@@ -44,6 +44,8 @@ Pines que no se tocan:
 - **ESP32-S3 N16R8:** GPIO 26 a 37 (flash y PSRAM octal). GPIO 0, 3, 45 y 46 son de arranque. GPIO19 y 20 son el USB nativo.
 - **[CONFIRMAR]** en la serigrafia de cada placa que GPIO4 y GPIO5 salen a un pin del conector y que nada de la placa (LED, boton)
   esta conectado a ellos.
+- **[CONFIRMAR]** en la placa que haga de medidora que salen al conector GPIO21 y GPIO22 (clasico) o GPIO8 y GPIO9 (S3), los
+  pines I2C que usa `firmware/meter_app`.
 
 ## 3. Montajes
 
@@ -86,8 +88,8 @@ por el FT232RL; la energia, por la fuente a traves del INA226. La otra placa hac
     Placa medidora (la otra placa, por su USB al PC)
        3V3 ---> INA226 VCC
        GND ---> INA226 GND
-       SDA ---> INA226 SDA     pines por definir al escribir la aplicacion medidora (seccion 9)
-       SCL ---> INA226 SCL
+       SDA ---> INA226 SDA     ESP32 clasico: GPIO21. ESP32-S3: GPIO8
+       SCL ---> INA226 SCL     ESP32 clasico: GPIO22. ESP32-S3: GPIO9
 
     Analizador: CH0 GPIO4, CH1 GPIO5, GND, de la placa bajo prueba.
 
@@ -173,16 +175,25 @@ Si responde, el puente USB de la placa no estorba. Si hay tiempos de espera o tr
 ### 6.5 Paridad contra Python en silicio
 
 Repetir la comprobacion de QEMU en la placa real: las acciones deben coincidir con Python con error menor a 1e-4 en FP32, INT16 e
-INT8. Ninguna medida tiene sentido sin esto. **[PENDIENTE]**: hoy `host/qemu_device.py` hace esta prueba solo contra QEMU; hay que
-apuntarla a un puerto serie (cambio pequeno, hacerlo cuando llegue la placa).
+INT8. Ninguna medida tiene sentido sin esto. Es la misma prueba que se hizo en QEMU, ahora por el puerto serie:
+
+    python -m host.qemu_device esp32 --port COMx       # placa A
+    python -m host.qemu_device esp32s3 --port COMy     # placa B
+
+Resultado en `results/firmware/hw_parity_<objetivo>.json`; debe decir `"ok": true`. Prueba tambien que el firmware rechaza un
+modelo inexistente, una observacion NaN y una trama corrupta.
 
 ## 7. Prueba de cada senal
 
 1. **GPIO4 y GPIO5:** montaje 2, captura en PulseView a 24 MHz mientras corre B01. Deben verse pulsos en ambos canales; GPIO4 contenido
    dentro de GPIO5.
 2. **UART a 921600:** en PulseView, decodificador UART en CH2 a 921600 8N1. Los bytes deben decodificarse sin errores de trama.
-3. **INA226:** con la aplicacion medidora (seccion 9), con la placa bajo prueba apagada, la corriente debe dar cerca de 0 y la tension
-   de bus la de la fuente.
+3. **INA226:** con la medidora grabada (seccion 9) y la fuente encendida pero la placa bajo prueba desconectada de VIN-:
+
+       python -m host.energy_runner --check --meter-port COMy --shunt-ohm 0.1
+
+   Debe dar `ina226_address` (la medidora la detecta sola entre 0x40 y 0x4F), `i_mean_a` cerca de 0, `v_mean` igual a la fuente
+   y `sample_rate_hz` cerca de 3500. Si dice que no encuentra el INA226, revisar SDA, SCL, VCC y GND.
 
 ## 8. Calibracion del shunt e incertidumbre (B03)
 
@@ -194,16 +205,25 @@ apuntarla a un puerto serie (cambio pequeno, hacerlo cuando llegue la placa).
 4. Declarar en el articulo: exactitud del multimetro segun su hoja, resolucion del INA226 (2.5 uV de shunt, 1.25 mV de bus), shunt
    corregido y desviacion estandar de los tramos.
 
-## 9. Codigo que falta para B03
+## 9. Codigo de B03
 
-Nada de esto existe aun y se escribe cuando el montaje este confirmado:
+Escrito y probado sin hardware: la cadena completa con una medidora simulada de potencia conocida (`tests/test_energy_runner.py`) y
+el firmware de la medidora en QEMU, que envia tramas que el host decodifica sin errores en ambos objetivos. Lo unico sin probar es
+la lectura del INA226 real, que QEMU no emula.
 
-- Aplicacion de la placa medidora: inicia I2C, llama a `ina226_init` con shunt y direccion confirmados, y envia por USB muestras
-  `t, v, i` con marca de tiempo.
-- Pines I2C de la medidora: se eligen al escribirla, segun la placa que haga de medidora. Si la medidora es el ESP32 clasico, GPIO21
-  (SDA) y GPIO22 (SCL) son los habituales; en el S3 cualquier GPIO libre fuera de 26 a 37 y de los de arranque.
-- Registro en el PC en el formato que lee `benchmark/energy/energy.py`.
-- Sincronizacion entre tramos: marcar inicio y fin del tramo activo (por ejemplo, capturar GPIO5 tambien en la medidora).
+- **Medidora:** `firmware/meter_app`, aplicacion ESP-IDF aparte. Detecta el INA226 por sus registros de identidad, convierte cada
+  140 us sin promediado (unas 3500 muestras por segundo) y envia los registros crudos por su USB a 921600 baudios. Se graba en la
+  placa que no se mide:
+
+      . $HOME\esp\esp-idf\export.ps1
+      cd firmware\meter_app
+      idf.py -B build_esp32 -p COMy flash          # si la medidora es el ESP32 clasico; build_esp32s3 si es el S3
+
+- **Host:** `host/energy_runner.py`. Reposo de 60 s, un tramo activo de 60 s por modelo (6 en total) a 50 Hz, y reposo otra vez:
+  unos 8 min por placa. Recorta 1 s en cada borde, integra con el reloj de la medidora y reporta potencia, su error estandar por
+  bloques de 1 s, energia por ciclo, energia atribuible por inferencia y la deriva entre los dos reposos.
+- **Shunt:** el valor se pasa con `--shunt-ohm` y la conversion se hace en el PC. Calibrar no obliga a regrabar, y una medicion
+  ya hecha se puede recalcular desde `raw.csv`.
 
 ## 10. Orden de las mediciones
 
@@ -217,7 +237,7 @@ Una placa a la vez. Primero la placa A, luego la B, mismo orden.
 | 4 | B05 lazo cerrado | 2 | `... --group B05 --port COMx --platform esp32`, con captura de PulseView guardada | Captura `.sr` junto al resultado |
 | 5 | B06 | 1 | `... --group B06 --port COMx --platform esp32 --episodes 50` | |
 | 6 | B07 | 1 | `... --group B07 --port COMx --platform esp32 --episodes 50 --push-n 60`, repetir con 100 y 140 | |
-| 7 | B03 energia | 3 | Tramo en reposo y tramo activo de al menos 60 s cada uno | Muestras de la medidora |
+| 7 | B03 energia | 3 | `python -m host.energy_runner --dut-port COMz --meter-port COMy --platform esp32 --shunt-ohm <calibrado>` | `results/B03/<id>/` |
 
 Para la placa B cambiar `--platform esp32s3` y el puerto. Si B05 se mide tambien por el FT232RL, guardarlo como corrida aparte e
 indicar el latency timer.
@@ -238,5 +258,5 @@ Anotar en cada sesion: fecha, placa, puerto, puente USB, latency timer, temperat
 | GPIO4/GPIO5 planos en PulseView | Pin equivocado en la serigrafia o canal mal asignado | Revisar con el multimetro en modo diodo hasta el pin del modulo |
 | PulseView pierde muestras | USB saturado | Bajar a 12 MHz o menos canales |
 | Fuente entra en limite de corriente | Corto o conexion invertida | Apagar, revisar seccion 4 |
-| INA226 no responde en I2C | Direccion distinta o falta pull-up | Escanear el bus; revisar puentes A0/A1 |
+| `energy_runner` dice que no encuentra el INA226 | Cableado I2C, falta VCC, o pines distintos a GPIO21/22 (clasico) u 8/9 (S3) | Revisar con el multimetro; la direccion se detecta sola |
 | Tension de bus del INA226 rara | Montaje en lado bajo o GND sin unir | Volver al esquema de la seccion 3 |

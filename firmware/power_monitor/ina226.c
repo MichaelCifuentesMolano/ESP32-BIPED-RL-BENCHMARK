@@ -4,6 +4,11 @@
 #define REG_BUS 0x02
 #define REG_CURRENT 0x04
 #define REG_CALIBRATION 0x05
+#define REG_SHUNT 0x01
+#define REG_MASK 0x06
+#define REG_MANUFACTURER 0xFE
+#define REG_DIE 0xFF
+#define CVRF (1 << 3)
 #define BUS_LSB_V 0.00125f
 
 static esp_err_t write16(ina226_t *d, uint8_t reg, uint16_t v)
@@ -45,4 +50,34 @@ esp_err_t ina226_read(ina226_t *d, float *bus_v, float *current_a)
     *bus_v = (uint16_t)bus * BUS_LSB_V;
     *current_a = cur * d->current_lsb;
     return ESP_OK;
+}
+
+uint8_t ina226_find(i2c_master_bus_handle_t bus)
+{
+    for (uint8_t addr = 0x40; addr <= 0x4F; addr++) {
+        if (i2c_master_probe(bus, addr, 50) != ESP_OK) continue;
+        ina226_t t;
+        i2c_device_config_t cfg = {.dev_addr_length = I2C_ADDR_BIT_LEN_7, .device_address = addr, .scl_speed_hz = 400000};
+        if (i2c_master_bus_add_device(bus, &cfg, &t.dev) != ESP_OK) continue;
+        int16_t man = 0, die = 0;
+        int ok = read16(&t, REG_MANUFACTURER, &man) == ESP_OK && read16(&t, REG_DIE, &die) == ESP_OK;
+        i2c_master_bus_rm_device(t.dev);
+        if (ok && (uint16_t)man == 0x5449 && (uint16_t)die == 0x2260) return addr;
+    }
+    return 0;
+}
+
+esp_err_t ina226_read_raw(ina226_t *d, int16_t *shunt, uint16_t *bus)
+{
+    int16_t mask = 0, b = 0;
+    esp_err_t e;
+    int tries = 0;
+    do {  // leer el registro de mascara borra CVRF: cada muestra es una conversion nueva
+        e = read16(d, REG_MASK, &mask);
+    } while (e == ESP_OK && !(mask & CVRF) && ++tries < 2000);
+    if (e == ESP_OK && !(mask & CVRF)) return ESP_ERR_TIMEOUT;
+    if (e == ESP_OK) e = read16(d, REG_SHUNT, shunt);
+    if (e == ESP_OK) e = read16(d, REG_BUS, &b);
+    if (e == ESP_OK) *bus = (uint16_t)b;
+    return e;
 }

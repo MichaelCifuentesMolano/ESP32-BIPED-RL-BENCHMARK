@@ -27,6 +27,16 @@ def read_device_info(link):
     raise DeviceTimeout("sin identidad")
 
 
+def wait_ready(link, tries=60, pause_s=0.5):
+    """Reintenta read_device_info mientras la placa arranca (QEMU o placa recien conectada)."""
+    for _ in range(tries):
+        try:
+            return read_device_info(link)
+        except (DeviceTimeout, OSError):
+            time.sleep(pause_s)
+    raise DeviceTimeout("el firmware no respondio")
+
+
 def run_episode(env, link, model_id, noise, push=None, on_cycle=None):
     """Un episodio HIL: pasos 1 a 8 del modo B. Devuelve metricas funcionales y temporales por ciclo.
 

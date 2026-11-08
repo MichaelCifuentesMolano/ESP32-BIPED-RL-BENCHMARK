@@ -2,10 +2,12 @@
 
   python -m host.qemu_device esp32
   python -m host.qemu_device esp32s3
+  python -m host.qemu_device esp32 --port COM5     # misma prueba en la placa real: results/firmware/hw_parity_esp32.json
 
 Verifica funcion, no tiempos: QEMU no modela ciclos, asi que infer_us aqui no es una medicion.
 Salida: results/firmware/qemu_<objetivo>.json
 """
+import argparse
 import glob
 import json
 import os
@@ -20,8 +22,8 @@ import numpy as np
 
 from analysis.export_models import ARCHS, FORMATS, model_id
 from host import protocol as pr
-from host.hil_controller import read_device_info
-from host.serial_interface import DeviceLink
+from host.hil_controller import wait_ready
+from host.serial_interface import DeviceLink, open_serial
 from reinforcement_learning.evaluation.quantization import forward_fp32, forward_quant
 from simulation.simulation_config import ROOT
 
@@ -63,8 +65,8 @@ class SocketTransport:
         return out
 
 
-def flash_image(target):
-    build = ROOT / "firmware" / f"build_{target}"
+def flash_image(target, build=None):
+    build = build or ROOT / "firmware" / f"build_{target}"
     out = build / "flash_qemu.bin"
     py = next(iter(glob.glob(str(HOME / ".espressif/python_env/idf5.5*/Scripts/python.exe"))))
     subprocess.run([py, "-m", "esptool", "--chip", target, "merge_bin", "--fill-flash-size", f"{FLASH_MB[target]}MB", "-o", str(out), "@flash_args"],
@@ -80,21 +82,14 @@ def start_qemu(target, image):
     return subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, stdin=subprocess.DEVNULL)
 
 
-def wait_ready(link, tries=60):
-    for _ in range(tries):
-        try:
-            return read_device_info(link)
-        except Exception:
-            time.sleep(0.5)
-    raise TimeoutError("el firmware no respondio")
 
-
-def check(target, seed=0, per_model=40):
-    image = flash_image(target)
-    proc = start_qemu(target, image)
-    report = {"target": target, "note": "funcional; infer_us de QEMU no es medicion", "models": {}}
+def check(target, seed=0, per_model=40, port=None):
+    """Sin port, contra QEMU. Con port, la misma prueba contra la placa real por puerto serie (paso 6.5 de la guia)."""
+    proc = None if port else start_qemu(target, flash_image(target))
+    note = "paridad en placa real" if port else "funcional; infer_us de QEMU no es medicion"
+    report = {"target": target, "port": port, "note": note, "models": {}}
     try:
-        link = DeviceLink(SocketTransport(PORT), timeout_s=2.0)
+        link = DeviceLink(open_serial(port) if port else SocketTransport(PORT), timeout_s=2.0)
         report["device"] = wait_ready(link)
         rng = np.random.default_rng(seed)
         for arch in ARCHS:
@@ -117,15 +112,20 @@ def check(target, seed=0, per_model=40):
         report["ok"] = (max(m["max_abs_vs_python"] for m in report["models"].values()) < 1e-4 and report["bad_model_status"] == pr.STATUS_BAD_MODEL
                         and report["nan_status"] == pr.STATUS_NON_FINITE and report["after_corrupt_frame_status"] == pr.STATUS_OK)
     finally:
-        proc.kill()
-        err = proc.stderr.read().decode(errors="replace")[-400:]
-        if err.strip():
-            report["qemu_stderr"] = err
-    out = ROOT / "results" / "firmware" / f"qemu_{target}.json"
+        if proc:
+            proc.kill()
+            err = proc.stderr.read().decode(errors="replace")[-400:]
+            if err.strip():
+                report["qemu_stderr"] = err
+    out = ROOT / "results" / "firmware" / (f"hw_parity_{target}.json" if port else f"qemu_{target}.json")
     out.write_text(json.dumps(report, indent=1), encoding="utf8")
     return report
 
 
 if __name__ == "__main__":
-    r = check(sys.argv[1] if len(sys.argv) > 1 else "esp32")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("target", nargs="?", default="esp32", choices=list(FLASH_MB))
+    ap.add_argument("--port", help="puerto serie de la placa real; sin el, QEMU")
+    a = ap.parse_args()
+    r = check(a.target, port=a.port)
     print(json.dumps({k: v for k, v in r.items() if k != "models"}, indent=1))

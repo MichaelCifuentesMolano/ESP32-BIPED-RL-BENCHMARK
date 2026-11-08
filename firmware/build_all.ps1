@@ -14,3 +14,11 @@ foreach ($target in "esp32", "esp32s3") {
     idf.py -B $b -D IDF_TARGET=$target -D "SDKCONFIG=$b/sdkconfig" size-components --format text --output-file "$out\size_components_$target.txt"
     Write-Output "OK $target"
 }
+# Placa medidora de B03 (aplicacion aparte); cualquiera de las dos placas puede hacer de medidora.
+Set-Location "$PSScriptRoot\meter_app"
+foreach ($target in "esp32", "esp32s3") {
+    $b = "build_$target"
+    idf.py -B $b -D IDF_TARGET=$target -D "SDKCONFIG=$b/sdkconfig" build
+    if ($LASTEXITCODE -ne 0) { Write-Output "FALLO medidor $target"; exit 1 }
+    Write-Output "OK medidor $target"
+}

@@ -1,5 +1,6 @@
 {
  "target": "esp32s3",
+ "port": null,
  "note": "funcional; infer_us de QEMU no es medicion",
  "models": {
   "original_fp32": {

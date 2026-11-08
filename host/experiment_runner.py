@@ -10,7 +10,7 @@ import numpy as np
 
 from analysis.export_models import ARCHS, FORMATS, model_id
 from host.data_logger import ExperimentLog, deadline_stats, latency_stats
-from host.hil_controller import read_device_info, run_episode
+from host.hil_controller import run_episode, wait_ready
 from host.serial_interface import DeviceLink, DeviceTimeout, open_serial
 from host.virtual_esp32 import VirtualESP32
 from reinforcement_learning.evaluation.quantization import action_errors, forward_fp32, forward_quant
@@ -19,6 +19,8 @@ from simulation.simulation_config import ROOT, load_config
 
 RESET_NOISE = 0.02
 TIMEOUT_S = 0.015
+# B01 y B04 miden latencia: una espera corta descartaria justo las inferencias lentas. El plazo de 20 ms se evalua aparte.
+ISOLATED_TIMEOUT_S = 0.5
 
 
 def load_models(seed):
@@ -44,6 +46,7 @@ def matrix(archs):
 
 def isolated(a, link, models):
     """Modo A, B01 y B04: observaciones almacenadas, sin PyBullet en la ruta critica."""
+    link.timeout_s = ISOLATED_TIMEOUT_S
     for arch, fmt, mid in matrix(a.archs):
         obs = np.load(ROOT / "datasets" / f"{arch}_seed{a.seed}.npz")["test"]
         idx = np.random.default_rng(a.seed).integers(0, len(obs), a.samples)
@@ -61,7 +64,7 @@ def isolated(a, link, models):
                 got.append(r["actions"])
                 log.row(i, r["infer_us"], round(r["round_trip_us"], 1), r["free_heap"], 0)
             except DeviceTimeout:
-                rtt.append(TIMEOUT_S * 1e6)
+                rtt.append(ISOLATED_TIMEOUT_S * 1e6)
                 missed.append(True)
                 log.row(i, "", "", "", 1)
         summary = {"infer_us": latency_stats(infer), "round_trip_us": latency_stats(rtt),
@@ -118,7 +121,7 @@ if __name__ == "__main__":
     mods = load_models(args.seed)
     dev = connect(args, mods)
     if args.port:
-        print(read_device_info(dev))
+        print(wait_ready(dev))
     if args.group in ("B01", "B04"):
         isolated(args, dev, mods)
     else:

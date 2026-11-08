@@ -1,5 +1,6 @@
 {
  "target": "esp32",
+ "port": null,
  "note": "funcional; infer_us de QEMU no es medicion",
  "models": {
   "original_fp32": {
@@ -16,7 +17,7 @@
   },
   "compact_fp32": {
    "n": 40,
-   "max_abs_vs_python": 4.172325134277344e-07
+   "max_abs_vs_python": 1.0170042514801025e-05
   },
   "compact_int16": {
    "n": 40,

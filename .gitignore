@@ -1,7 +1,9 @@
 __pycache__/
 .pytest_cache/
-firmware/build_*/
-firmware/sdkconfig*
-!firmware/sdkconfig.defaults*
+firmware/**/build_*/
+firmware/**/sdkconfig
+firmware/**/sdkconfig.old
 firmware/managed_components/
+firmware/**/managed_components/
+firmware/**/dependencies.lock
 models/*/seed*/last.pt
