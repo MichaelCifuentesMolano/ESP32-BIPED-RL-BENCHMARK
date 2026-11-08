@@ -53,6 +53,12 @@ Redirigir con `>>`, no con `>`: el segundo borra `results/training/matrix.log`, 
 **Tarea:** crear `documentation/guia_conexion_hardware.md`, paso a paso, para cuando esten los elementos. Ampliar la actual
 `documentation/guia_hardware.md`, que solo resume pines y comandos. No inventar pines ni valores: confirmar con la placa y el modulo reales.
 
+**Compras del usuario (2026-11-07, en camino):** ESP32-S3 DevKit **N16R8** (no N8R8: 16 MB flash, PSRAM 8 MB octal igual;
+poner `FLASHSIZE_16MB` y declarar), un "ESP32 N8R8" sin identificar (falta el enlace: WROVER clasico o S3), INA226 I2C 0-36 V,
+FT232RL USB a TTL 3.3/5 V, analizador logico 8 canales 24 MHz (PulseView/sigrok). Tiene fuente regulada y multimetro.
+Decidido: la placa que no se mide lee el INA226, y se invierten. El FT232RL lleva UART0 en B03 (sin USB de la placa, sin VCC)
+y permite latency timer de 1 ms para B05. Confirmar al llegar: shunt, direccion I2C, puente 3.3 V del FT232RL.
+
 Antes de escribirla, pedir al usuario el modelo exacto de cada elemento:
 
 | Elemento | Dato que falta |
