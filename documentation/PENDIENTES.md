@@ -7,6 +7,12 @@ Corte: 2026-11-07, entrenamiento detenido a peticion del usuario. Para retomar, 
 **2026-11-07:** matriz relanzada en segundo plano desde PowerShell, agregando a `matrix.log`. Repite compact 1 desde cero; las
 semillas 0 se saltan. Los bloques `NativeCommandError` del log son PowerShell envolviendo el stderr de pybullet: ruido, no fallo.
 
+**Revision 2026-11-07 (original 1 en 800 k):** registros coherentes (sin NaN, cada 20 k, fases en 60 k y 180 k, 430 a 450 pasos/s).
+compact 1 termino igual que compact 0 (0.53 m/s y 0.04 caidas de 5 en los ultimos 500 k), aunque empezo a caminar en 1.62 M y no en
+0.8 M: el arranque tardio del original 0 cabe en la variacion entre semillas, su meseta de 0.28 m/s todavia no. Decidir al terminar
+original 1, antes de que avance compact 2. `best.pt` sale del maximo de evaluaciones de 5 episodios y sobreestima (compact: 0.61 a 0.63
+frente a 0.53 de media); citar solo las cifras de B06 con 50 episodios.
+
 La matriz de 6 entrenamientos (2 arquitecturas, 3 semillas, 3 M pasos, unas 2 h cada uno a 430 pasos/s) quedo **detenida**, 2 de 6 hechos. Faltan unas 8 h.
 
 | Entrenamiento | Estado al corte |
