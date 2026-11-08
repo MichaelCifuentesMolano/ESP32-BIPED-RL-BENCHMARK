@@ -73,6 +73,14 @@ guia; si falla, mover el protocolo a UART1 (cambio de firmware).
 
 ## 4. Tareas que requieren hardware
 
+**2026-11-07, ESP32 clasico (ESP-WROOM-32, D0WD-V3 v3.1, CH340 en COM5), con el entrenamiento cargando el PC:**
+- Grabado y paridad en silicio: `ok`, 6 modelos, error max 2.3e-6 FP32 y 1.2e-7 enteros, 0 perdidas (`results/firmware/hw_parity_esp32.json`).
+- B01 (mediana de inferencia): original 41.2 / 25.6 / 14.2 ms, compacto 1.40 / 0.73 / 0.54 ms (FP32 / INT16 / INT8). Ida y vuelta
+  unos 5.4 ms mas. Plazo de 20 ms: compacto 100 %, original INT8 79 %, original FP32 e INT16 0 %.
+- Causa: pesos `static const` en flash leidos por la cache de 32 KB; el original FP32 (313 KB) ni cabe en la SRAM libre (299 KB).
+- Repetir B04 y B05 con el PC libre: la ida y vuelta puede estar inflada por la carga.
+- **Decision abierta (D7):** dejar los pesos en flash (despliegue estandar, como TFLite Micro) o copiar a SRAM los que quepan.
+
 Nada de esto se ha ejecutado. QEMU y el ESP32 virtual no son medicion.
 
 - [ ] **Falta codigo para B03:** `firmware/power_monitor` es solo el controlador del INA226, nunca probado en un chip real. No existe la

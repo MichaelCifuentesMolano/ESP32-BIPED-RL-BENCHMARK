@@ -11,7 +11,7 @@ USB si cambian.
 
 | Elemento | Modelo | Uso | Datos por confirmar al llegar |
 |---|---|---|---|
-| Placa A | ESP-WROOM-32, USB-C (MercadoLibre) | Objetivo ESP32 clasico | **[CONFIRMAR]** chip USB (CH340, CP2102, CH9102), 30 o 38 pines, texto del blindaje |
+| Placa A | ESP-WROOM-32, USB-C | Objetivo ESP32 clasico | Confirmado 2026-11-07: blindaje ESP-WROOM-32, chip ESP32-D0WD-V3 rev. v3.1, puente CH340 (COM5 en este PC). **[CONFIRMAR]** 30 o 38 pines |
 | Placa B | ESP32-S3 DevKit N16R8 | Objetivo ESP32-S3 | **[CONFIRMAR]** chip USB, cual conector dice COM/UART y cual USB/OTG |
 | ESP32 clasico propio | El que ya tienes | Reserva o medidora | **[CONFIRMAR]** modulo |
 | INA226 | Modulo I2C 0-36 V | B03, lado alto | **[CONFIRMAR]** shunt (la resistencia grande suele decir R100 = 0.1 ohm), direccion I2C (puentes A0 y A1) |
