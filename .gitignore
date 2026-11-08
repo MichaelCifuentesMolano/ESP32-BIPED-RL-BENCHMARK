@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+firmware/build_*/
+firmware/sdkconfig*
+!firmware/sdkconfig.defaults*
+firmware/managed_components/
+models/*/seed*/last.pt

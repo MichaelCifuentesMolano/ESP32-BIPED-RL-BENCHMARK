@@ -1,0 +1,59 @@
+{
+ "seed": 0,
+ "models": {
+  "original_fp32": {
+   "model_id": 0,
+   "trained": false,
+   "param_bytes": 313392
+  },
+  "original_int16": {
+   "model_id": 1,
+   "trained": false,
+   "calibration_percentile": 100.0,
+   "param_bytes": 162592,
+   "mae": 0.0002503749441643777,
+   "rmse": 0.002956584288464706,
+   "max_abs": 0.15361705422401428,
+   "p999_abs": 0.09707240015268326,
+   "outside_calib": 0.044
+  },
+  "original_int8": {
+   "model_id": 2,
+   "trained": false,
+   "calibration_percentile": 99.99,
+   "param_bytes": 84768,
+   "mae": 0.0069074521020717535,
+   "rmse": 0.009568133321063078,
+   "max_abs": 0.17053726315498352,
+   "p999_abs": 0.10795223712921143,
+   "outside_calib": 0.044
+  },
+  "compact_fp32": {
+   "model_id": 3,
+   "trained": true,
+   "param_bytes": 29232
+  },
+  "compact_int16": {
+   "model_id": 4,
+   "trained": true,
+   "calibration_percentile": 100.0,
+   "param_bytes": 16288,
+   "mae": 0.0001383631893475344,
+   "rmse": 0.0032015175998582365,
+   "max_abs": 0.5264582931995392,
+   "p999_abs": 0.09708477556705475,
+   "outside_calib": 0.006666666666666667
+  },
+  "compact_int8": {
+   "model_id": 5,
+   "trained": true,
+   "calibration_percentile": 99.99,
+   "param_bytes": 9120,
+   "mae": 0.010022766289767181,
+   "rmse": 0.01613686800397499,
+   "max_abs": 0.5705324411392212,
+   "p999_abs": 0.14960187673568726,
+   "outside_calib": 0.006666666666666667
+  }
+ }
+}

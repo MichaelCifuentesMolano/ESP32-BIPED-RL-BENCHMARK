@@ -1,0 +1,19 @@
+# Sustituye a requirements.txt: PyPI no ofrece wheel de PyBullet para Windows en Python 3.12 y 3.13.
+# OpenBLAS es obligatorio aqui: con MKL 2026.1 numpy termina con excepcion nativa 0xC06D007F al multiplicar matrices.
+name: latiniot
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - pybullet=3.25
+  - numpy=2.4.6
+  - pytest=9.2.0
+  - libblas=*=*openblas
+  - matplotlib=3.11.2
+  - pyyaml=6.0.3
+  - pyserial=3.5
+  - pip
+  - pip:
+      # Rueda CUDA 12.8; sin GPU usar la de CPU y entrenar con --cpu.
+      - --extra-index-url https://download.pytorch.org/whl/cu128
+      - torch==2.11.0+cu128
+      - ziglang==0.17.1  # compilador C para la prueba de paridad en PC

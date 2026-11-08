@@ -1,0 +1,45 @@
+# Unica fuente de parametros de simulacion. Los fisicos del robot se leen del URDF, no se repiten aqui.
+# origen: articulo = Bipedo.pdf; rbipedo = commit d1effbd; propuesto = decidido en este proyecto.
+robot:
+  urdf: robot/urdf/biped.urdf
+  spawn_height: 0.77              # articulo y rbipedo
+  # Orden de la politica, independiente del orden del URDF. Se resuelve por nombre.
+  action_order: [l_hip_yaw, l_hip_roll, l_hip_pitch, l_knee_pitch, l_ankle_pitch, l_ankle_roll,
+                 r_hip_yaw, r_hip_roll, r_hip_pitch, r_knee_pitch, r_ankle_pitch, r_ankle_roll]
+physics:
+  dt: 0.001                       # articulo
+  steps_per_action: 20            # articulo: 50 Hz
+  gravity: -9.81
+  solver_iterations: 50           # articulo
+  num_sub_steps: 4                # articulo; no confundir con steps_per_action
+contact:                          # rbipedo, H15
+  friction: 0.6
+  restitution: 0.0
+  foot_stiffness: 10000.0
+  foot_damping: 50.0
+  # rbipedo usa 3.0; con I ~ 5e-4 eso da d*dt/I ~ 6 y la junta queda pegada (error 41 %). Se conserva el 0.3 del URDF.
+  ankle_joint_damping: 0.3
+control:                          # propuesto; punto de partida PID_KP y PID_KD de rbipedo, orden yaw a ankle_roll
+  kp: [30, 150, 300, 200, 80, 30]   # hip_roll sube de 50 a 150: sostiene el cuerpo en apoyo simple
+  kd: [0.2, 6, 12, 8, 0.2, 0.1]   # maximo sin vibracion: cadera pitch kd>=16 alterna signo cada paso y satura. yaw y tobillo bajos: I ~ 5e-4
+observation:                      # rbipedo, curriculum_env.py
+  force_scale: 300.0
+  joint_pos_clip: 3.141592653589793
+  joint_vel_clip: 20.0
+  lin_vel_clip: 5.0
+  ang_vel_clip: 10.0
+termination:                      # rbipedo
+  min_height: 0.40
+  max_tilt: 1.2
+reward:                           # articulo, tabla 5 y ecuaciones 32, 33 y 37
+  height_floor: 0.40
+  vel_clip: 1.5
+  backward_gain: 2.0
+  phases:
+    - {w_vel: 0.0, w_height: 3.0, w_alive: 2.0, w_energy: 0.05, w_roll: 0.5, w_pitch: 0.5, w_fall: 50.0}
+    - {w_vel: 2.0, w_height: 2.0, w_alive: 2.0, w_energy: 0.08, w_roll: 0.4, w_pitch: 0.4, w_fall: 50.0}
+    - {w_vel: 2.0, w_height: 1.5, w_alive: 2.0, w_energy: 0.10, w_roll: 0.3, w_pitch: 0.3, w_fall: 50.0}
+  phase_bounds: [40000, 160000]   # D6: calendario real de Exp. 4, en pasos totales
+episode:
+  train_steps: 500                # articulo: 10 s
+  eval_steps: 300                 # articulo: 6 s

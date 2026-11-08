@@ -1,0 +1,50 @@
+{
+ "target": "esp32s3",
+ "note": "funcional; infer_us de QEMU no es medicion",
+ "models": {
+  "original_fp32": {
+   "n": 40,
+   "max_abs_vs_python": 5.960464477539062e-07
+  },
+  "original_int16": {
+   "n": 40,
+   "max_abs_vs_python": 5.960464477539063e-08
+  },
+  "original_int8": {
+   "n": 40,
+   "max_abs_vs_python": 1.1920928955078125e-07
+  },
+  "compact_fp32": {
+   "n": 40,
+   "max_abs_vs_python": 4.172325134277344e-07
+  },
+  "compact_int16": {
+   "n": 40,
+   "max_abs_vs_python": 1.1920928955078125e-07
+  },
+  "compact_int8": {
+   "n": 40,
+   "max_abs_vs_python": 1.1920928955078125e-07
+  }
+ },
+ "device": {
+  "chip_model": 9.0,
+  "cores": 2.0,
+  "revision": 3.0,
+  "cpu_mhz": 240.0,
+  "flash_kb": 8192.0,
+  "psram_kb": 0.0,
+  "sram_total_kb": 394.18359375,
+  "sram_free_kb": 375.8515625,
+  "idf_major": 5.0,
+  "idf_minor": 5.0,
+  "idf_patch": 1.0,
+  "model_count": 6.0,
+  "min_free_heap": 384856
+ },
+ "bad_model_status": 1,
+ "nan_status": 2,
+ "after_corrupt_frame_status": 0,
+ "ok": true,
+ "qemu_stderr": "RAM size larger than 4 MB not supported\r\nAdding SPI flash device\r\n"
+}

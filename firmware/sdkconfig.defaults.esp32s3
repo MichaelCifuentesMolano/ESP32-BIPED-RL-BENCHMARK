@@ -1,0 +1,6 @@
+# ESP32-S3 N8R8: 8 MB flash, 8 MB PSRAM octal
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+# Si la PSRAM falla, arrancar y reportarla en 0 en vez de reiniciar en bucle
+CONFIG_SPIRAM_IGNORE_NOTFOUND=y

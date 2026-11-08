@@ -1,0 +1,367 @@
+== compact 0
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+   20,000 P1    566/s tr    126.1 len    43 | ev R    -15.6 vx +0.101 ep 0.31s falls 5/5 a 7.590
+   40,000 P1    545/s tr    111.5 len    40 | ev R     48.3 vx +0.236 ep 0.60s falls 5/5 a 2.021
+   60,000 P2    515/s tr    174.3 len    66 | ev R    217.1 vx +0.232 ep 1.55s falls 5/5 a 0.256
+   80,000 P2    496/s tr    269.8 len    94 | ev R    347.1 vx +0.182 ep 2.35s falls 5/5 a 0.063
+  100,000 P2    473/s tr    676.9 len   212 | ev R    612.9 vx -0.164 ep 4.94s falls 2/5 a 0.060
+  120,000 P2    444/s tr   1404.7 len   414 | ev R    844.0 vx -0.036 ep 5.66s falls 1/5 a 0.066
+  140,000 P2    431/s tr   1392.0 len   424 | ev R    949.9 vx -0.044 ep 6.00s falls 0/5 a 0.063
+  160,000 P2    385/s tr   1398.8 len   422 | ev R    975.7 vx +0.031 ep 5.81s falls 1/5 a 0.054
+  180,000 P3    381/s tr   1231.5 len   430 | ev R   1015.9 vx +0.005 ep 6.00s falls 0/5 a 0.044
+  200,000 P3    378/s tr   1300.5 len   452 | ev R    971.8 vx +0.006 ep 5.86s falls 1/5 a 0.040
+  220,000 P3    378/s tr   1252.5 len   448 | ev R    948.5 vx -0.034 ep 6.00s falls 0/5 a 0.037
+  240,000 P3    378/s tr   1352.6 len   489 | ev R    981.5 vx -0.015 ep 6.00s falls 0/5 a 0.031
+  260,000 P3    378/s tr   1401.1 len   487 | ev R    948.1 vx -0.042 ep 6.00s falls 0/5 a 0.028
+  280,000 P3    378/s tr   1317.4 len   449 | ev R    904.7 vx -0.060 ep 6.00s falls 0/5 a 0.028
+  300,000 P3    377/s tr   1544.7 len   500 | ev R    918.9 vx -0.059 ep 6.00s falls 0/5 a 0.023
+  320,000 P3    376/s tr   1424.8 len   484 | ev R   1029.5 vx +0.016 ep 6.00s falls 0/5 a 0.021
+  340,000 P3    367/s tr   1379.9 len   481 | ev R    979.2 vx -0.033 ep 6.00s falls 0/5 a 0.024
+  360,000 P3    355/s tr   1482.0 len   492 | ev R   1025.4 vx +0.081 ep 6.00s falls 0/5 a 0.020
+  380,000 P3    345/s tr   1592.9 len   493 | ev R    990.4 vx +0.003 ep 6.00s falls 0/5 a 0.022
+  400,000 P3    339/s tr   1586.5 len   486 | ev R   1040.0 vx +0.097 ep 6.00s falls 0/5 a 0.019
+  420,000 P3    329/s tr   1610.8 len   495 | ev R    738.5 vx -0.094 ep 5.48s falls 1/5 a 0.018
+  440,000 P3    330/s tr   1639.8 len   500 | ev R    993.2 vx +0.035 ep 6.00s falls 0/5 a 0.018
+  460,000 P3    333/s tr   1639.6 len   494 | ev R   1033.4 vx +0.083 ep 6.00s falls 0/5 a 0.016
+  480,000 P3    336/s tr   1629.1 len   490 | ev R   1018.0 vx +0.039 ep 6.00s falls 0/5 a 0.018
+  500,000 P3    331/s tr   1604.4 len   476 | ev R    993.5 vx +0.082 ep 5.96s falls 1/5 a 0.020
+  520,000 P3    334/s tr   1616.6 len   481 | ev R    976.3 vx +0.023 ep 6.00s falls 0/5 a 0.022
+  540,000 P3    337/s tr   1678.1 len   494 | ev R   1017.6 vx +0.012 ep 6.00s falls 0/5 a 0.018
+  560,000 P3    339/s tr   1686.1 len   494 | ev R   1039.5 vx +0.061 ep 6.00s falls 0/5 a 0.020
+  580,000 P3    342/s tr   1635.3 len   475 | ev R    982.3 vx +0.141 ep 5.68s falls 2/5 a 0.018
+  600,000 P3    345/s tr   1725.7 len   499 | ev R   1082.8 vx +0.148 ep 6.00s falls 0/5 a 0.019
+  620,000 P3    347/s tr   1714.3 len   490 | ev R   1050.0 vx +0.145 ep 6.00s falls 0/5 a 0.019
+  640,000 P3    350/s tr   1770.7 len   500 | ev R   1094.4 vx +0.166 ep 6.00s falls 0/5 a 0.022
+  660,000 P3    352/s tr   1696.3 len   483 | ev R   1051.1 vx +0.136 ep 6.00s falls 0/5 a 0.017
+  680,000 P3    354/s tr   1757.4 len   491 | ev R   1095.2 vx +0.173 ep 6.00s falls 0/5 a 0.019
+  700,000 P3    356/s tr   1748.8 len   488 | ev R   1102.1 vx +0.193 ep 6.00s falls 0/5 a 0.020
+  720,000 P3    358/s tr   1798.8 len   497 | ev R   1073.2 vx +0.104 ep 6.00s falls 0/5 a 0.018
+  740,000 P3    360/s tr   1763.2 len   486 | ev R   1066.1 vx +0.101 ep 6.00s falls 0/5 a 0.019
+  760,000 P3    362/s tr   1795.8 len   495 | ev R   1120.8 vx +0.214 ep 6.00s falls 0/5 a 0.019
+  780,000 P3    363/s tr   1564.7 len   433 | ev R   1113.9 vx +0.231 ep 6.00s falls 0/5 a 0.026
+  800,000 P3    365/s tr   1822.2 len   500 | ev R   1148.9 vx +0.248 ep 6.00s falls 0/5 a 0.017
+  820,000 P3    367/s tr   1791.7 len   493 | ev R   1102.1 vx +0.203 ep 6.00s falls 0/5 a 0.021
+  840,000 P3    368/s tr   1769.3 len   486 | ev R   1105.3 vx +0.189 ep 6.00s falls 0/5 a 0.020
+  860,000 P3    370/s tr   1657.5 len   451 | ev R   1118.8 vx +0.237 ep 6.00s falls 0/5 a 0.020
+  880,000 P3    371/s tr   1854.3 len   500 | ev R   1127.8 vx +0.225 ep 6.00s falls 0/5 a 0.018
+  900,000 P3    372/s tr   1830.2 len   498 | ev R   1143.4 vx +0.232 ep 6.00s falls 0/5 a 0.022
+  920,000 P3    374/s tr   1860.9 len   500 | ev R   1122.5 vx +0.222 ep 6.00s falls 0/5 a 0.019
+  940,000 P3    375/s tr   1815.8 len   498 | ev R   1078.9 vx +0.156 ep 6.00s falls 0/5 a 0.017
+  960,000 P3    376/s tr   1843.8 len   497 | ev R   1125.4 vx +0.221 ep 6.00s falls 0/5 a 0.017
+  980,000 P3    377/s tr   1831.1 len   490 | ev R   1211.8 vx +0.399 ep 6.00s falls 0/5 a 0.021
+1,000,000 P3    379/s tr   1769.9 len   472 | ev R   1064.2 vx +0.173 ep 6.00s falls 0/5 a 0.017
+1,020,000 P3    380/s tr   1733.1 len   465 | ev R   1113.6 vx +0.251 ep 6.00s falls 0/5 a 0.020
+1,040,000 P3    381/s tr   1870.1 len   500 | ev R   1091.9 vx +0.222 ep 6.00s falls 0/5 a 0.018
+1,060,000 P3    382/s tr   1833.4 len   480 | ev R   1053.9 vx +0.300 ep 5.56s falls 1/5 a 0.019
+1,080,000 P3    383/s tr   1618.3 len   419 | ev R   1165.5 vx +0.306 ep 6.00s falls 0/5 a 0.019
+1,100,000 P3    384/s tr   1501.6 len   383 | ev R   1244.6 vx +0.459 ep 6.00s falls 0/5 a 0.021
+1,120,000 P3    385/s tr   1609.6 len   414 | ev R   1203.3 vx +0.410 ep 6.00s falls 0/5 a 0.020
+1,140,000 P3    386/s tr   1669.0 len   428 | ev R   1210.7 vx +0.420 ep 6.00s falls 0/5 a 0.014
+1,160,000 P3    387/s tr   1641.2 len   420 | ev R   1025.6 vx +0.413 ep 5.14s falls 1/5 a 0.019
+1,180,000 P3    388/s tr   1815.7 len   468 | ev R    947.2 vx +0.460 ep 4.88s falls 3/5 a 0.016
+1,200,000 P3    389/s tr   1574.7 len   403 | ev R   1218.7 vx +0.416 ep 6.00s falls 0/5 a 0.020
+1,220,000 P3    390/s tr   1790.5 len   453 | ev R   1267.6 vx +0.483 ep 6.00s falls 0/5 a 0.019
+1,240,000 P3    391/s tr   1667.4 len   416 | ev R   1227.4 vx +0.434 ep 6.00s falls 0/5 a 0.022
+1,260,000 P3    392/s tr   1586.9 len   400 | ev R   1224.7 vx +0.431 ep 6.00s falls 0/5 a 0.021
+1,280,000 P3    393/s tr   1853.9 len   461 | ev R   1210.5 vx +0.445 ep 6.00s falls 0/5 a 0.020
+1,300,000 P3    394/s tr   1799.8 len   446 | ev R   1248.7 vx +0.488 ep 6.00s falls 0/5 a 0.022
+1,320,000 P3    395/s tr   1901.6 len   475 | ev R   1210.5 vx +0.415 ep 6.00s falls 0/5 a 0.028
+1,340,000 P3    396/s tr   1860.3 len   458 | ev R   1280.2 vx +0.528 ep 6.00s falls 0/5 a 0.024
+1,360,000 P3    397/s tr   1747.7 len   429 | ev R   1294.3 vx +0.573 ep 6.00s falls 0/5 a 0.021
+1,380,000 P3    398/s tr   1839.2 len   458 | ev R    313.9 vx +0.474 ep 1.81s falls 4/5 a 0.024
+1,400,000 P3    399/s tr   1767.4 len   444 | ev R   1269.5 vx +0.523 ep 6.00s falls 0/5 a 0.021
+1,420,000 P3    400/s tr   1607.3 len   402 | ev R   1258.6 vx +0.506 ep 6.00s falls 0/5 a 0.023
+1,440,000 P3    400/s tr   1745.1 len   430 | ev R   1246.6 vx +0.500 ep 6.00s falls 0/5 a 0.023
+1,460,000 P3    401/s tr   1815.7 len   453 | ev R   1199.9 vx +0.417 ep 6.00s falls 0/5 a 0.033
+1,480,000 P3    402/s tr   1948.7 len   485 | ev R    855.2 vx +0.419 ep 4.35s falls 2/5 a 0.030
+1,500,000 P3    403/s tr   1867.4 len   466 | ev R   1242.1 vx +0.482 ep 6.00s falls 0/5 a 0.034
+1,520,000 P3    404/s tr   1887.5 len   466 | ev R   1244.8 vx +0.511 ep 6.00s falls 0/5 a 0.028
+1,540,000 P3    404/s tr   1923.5 len   477 | ev R   1230.3 vx +0.442 ep 6.00s falls 0/5 a 0.026
+1,560,000 P3    405/s tr   2013.4 len   497 | ev R   1162.6 vx +0.355 ep 6.00s falls 0/5 a 0.028
+1,580,000 P3    406/s tr   1823.4 len   453 | ev R   1020.4 vx +0.432 ep 5.14s falls 1/5 a 0.030
+1,600,000 P3    406/s tr   1788.2 len   445 | ev R   1263.7 vx +0.478 ep 6.00s falls 0/5 a 0.028
+1,620,000 P3    407/s tr   1969.3 len   484 | ev R   1216.7 vx +0.431 ep 6.00s falls 0/5 a 0.028
+1,640,000 P3    407/s tr   1902.4 len   469 | ev R   1240.5 vx +0.475 ep 6.00s falls 0/5 a 0.028
+1,660,000 P3    408/s tr   1902.5 len   475 | ev R   1185.1 vx +0.363 ep 6.00s falls 0/5 a 0.030
+1,680,000 P3    408/s tr   2004.3 len   500 | ev R   1262.5 vx +0.497 ep 6.00s falls 0/5 a 0.030
+1,700,000 P3    409/s tr   1958.2 len   484 | ev R   1181.1 vx +0.377 ep 6.00s falls 0/5 a 0.027
+1,720,000 P3    409/s tr   1875.8 len   471 | ev R   1175.7 vx +0.335 ep 6.00s falls 0/5 a 0.029
+1,740,000 P3    410/s tr   1832.9 len   461 | ev R   1255.5 vx +0.514 ep 6.00s falls 0/5 a 0.030
+1,760,000 P3    410/s tr   1996.9 len   495 | ev R   1233.5 vx +0.423 ep 6.00s falls 0/5 a 0.030
+1,780,000 P3    411/s tr   1937.9 len   483 | ev R   1191.6 vx +0.369 ep 6.00s falls 0/5 a 0.028
+1,800,000 P3    411/s tr   1901.3 len   472 | ev R   1274.8 vx +0.526 ep 6.00s falls 0/5 a 0.031
+1,820,000 P3    412/s tr   1913.0 len   476 | ev R   1083.5 vx +0.581 ep 5.09s falls 1/5 a 0.033
+1,840,000 P3    412/s tr   1895.0 len   467 | ev R   1255.4 vx +0.483 ep 6.00s falls 0/5 a 0.031
+1,860,000 P3    413/s tr   1866.2 len   461 | ev R   1237.5 vx +0.460 ep 6.00s falls 0/5 a 0.033
+1,880,000 P3    413/s tr   1981.1 len   488 | ev R   1266.4 vx +0.514 ep 6.00s falls 0/5 a 0.031
+1,900,000 P3    414/s tr   2008.8 len   489 | ev R   1219.9 vx +0.450 ep 6.00s falls 0/5 a 0.029
+1,920,000 P3    414/s tr   2005.4 len   488 | ev R   1314.1 vx +0.609 ep 6.00s falls 0/5 a 0.033
+1,940,000 P3    415/s tr   1891.2 len   463 | ev R   1250.2 vx +0.509 ep 6.00s falls 0/5 a 0.031
+1,960,000 P3    415/s tr   1988.4 len   484 | ev R   1260.8 vx +0.512 ep 6.00s falls 0/5 a 0.029
+1,980,000 P3    416/s tr   1934.1 len   472 | ev R   1202.8 vx +0.420 ep 6.00s falls 0/5 a 0.031
+2,000,000 P3    416/s tr   1782.1 len   437 | ev R   1168.2 vx +0.539 ep 5.58s falls 1/5 a 0.032
+2,020,000 P3    416/s tr   2046.6 len   496 | ev R   1324.5 vx +0.606 ep 6.00s falls 0/5 a 0.035
+2,040,000 P3    417/s tr   2051.7 len   495 | ev R   1267.5 vx +0.512 ep 6.00s falls 0/5 a 0.034
+2,060,000 P3    417/s tr   2046.7 len   498 | ev R   1246.3 vx +0.484 ep 6.00s falls 0/5 a 0.035
+2,080,000 P3    418/s tr   2049.3 len   496 | ev R   1281.6 vx +0.523 ep 6.00s falls 0/5 a 0.033
+2,100,000 P3    418/s tr   2082.2 len   500 | ev R   1242.0 vx +0.478 ep 6.00s falls 0/5 a 0.031
+2,120,000 P3    418/s tr   2033.3 len   494 | ev R   1205.7 vx +0.446 ep 6.00s falls 0/5 a 0.032
+2,140,000 P3    419/s tr   2026.3 len   490 | ev R   1258.0 vx +0.514 ep 6.00s falls 0/5 a 0.032
+2,160,000 P3    419/s tr   2071.6 len   500 | ev R   1254.3 vx +0.500 ep 6.00s falls 0/5 a 0.033
+2,180,000 P3    419/s tr   2052.7 len   496 | ev R   1215.7 vx +0.414 ep 6.00s falls 0/5 a 0.033
+2,200,000 P3    420/s tr   2087.5 len   500 | ev R   1279.0 vx +0.524 ep 6.00s falls 0/5 a 0.031
+2,220,000 P3    420/s tr   2001.4 len   481 | ev R   1272.0 vx +0.521 ep 6.00s falls 0/5 a 0.031
+2,240,000 P3    420/s tr   2059.9 len   495 | ev R   1265.4 vx +0.525 ep 6.00s falls 0/5 a 0.034
+2,260,000 P3    421/s tr   2078.7 len   497 | ev R   1302.3 vx +0.576 ep 6.00s falls 0/5 a 0.029
+2,280,000 P3    421/s tr   1928.5 len   465 | ev R   1240.1 vx +0.457 ep 6.00s falls 0/5 a 0.030
+2,300,000 P3    421/s tr   2012.6 len   484 | ev R   1291.8 vx +0.573 ep 6.00s falls 0/5 a 0.030
+2,320,000 P3    422/s tr   2048.9 len   493 | ev R   1248.0 vx +0.494 ep 6.00s falls 0/5 a 0.029
+2,340,000 P3    422/s tr   1852.7 len   451 | ev R   1226.9 vx +0.447 ep 6.00s falls 0/5 a 0.031
+2,360,000 P3    422/s tr   1998.2 len   481 | ev R   1243.3 vx +0.494 ep 6.00s falls 0/5 a 0.033
+2,380,000 P3    423/s tr   2005.0 len   483 | ev R   1308.4 vx +0.576 ep 6.00s falls 0/5 a 0.032
+2,400,000 P3    423/s tr   2071.9 len   493 | ev R   1293.7 vx +0.560 ep 6.00s falls 0/5 a 0.031
+2,420,000 P3    423/s tr   1983.6 len   475 | ev R   1283.7 vx +0.549 ep 6.00s falls 0/5 a 0.030
+2,440,000 P3    423/s tr   1841.5 len   444 | ev R   1219.8 vx +0.434 ep 6.00s falls 0/5 a 0.034
+2,460,000 P3    424/s tr   1975.9 len   476 | ev R   1296.3 vx +0.577 ep 6.00s falls 0/5 a 0.030
+2,480,000 P3    424/s tr   1920.6 len   463 | ev R   1264.5 vx +0.538 ep 6.00s falls 0/5 a 0.032
+2,500,000 P3    424/s tr   1780.1 len   432 | ev R   1268.6 vx +0.516 ep 6.00s falls 0/5 a 0.032
+2,520,000 P3    424/s tr   1886.3 len   456 | ev R   1252.0 vx +0.509 ep 6.00s falls 0/5 a 0.031
+2,540,000 P3    425/s tr   1987.7 len   480 | ev R   1205.5 vx +0.408 ep 6.00s falls 0/5 a 0.033
+2,560,000 P3    425/s tr   1988.6 len   481 | ev R   1286.7 vx +0.572 ep 6.00s falls 0/5 a 0.034
+2,580,000 P3    425/s tr   1987.2 len   477 | ev R   1281.8 vx +0.532 ep 6.00s falls 0/5 a 0.037
+2,600,000 P3    426/s tr   1836.3 len   445 | ev R   1245.6 vx +0.490 ep 6.00s falls 0/5 a 0.032
+2,620,000 P3    426/s tr   1925.2 len   466 | ev R   1299.6 vx +0.588 ep 6.00s falls 0/5 a 0.034
+2,640,000 P3    426/s tr   1913.8 len   464 | ev R    813.5 vx +0.573 ep 3.96s falls 3/5 a 0.031
+2,660,000 P3    426/s tr   1949.9 len   472 | ev R   1248.9 vx +0.506 ep 6.00s falls 0/5 a 0.034
+2,680,000 P3    427/s tr   2023.4 len   491 | ev R   1289.6 vx +0.548 ep 6.00s falls 0/5 a 0.033
+2,700,000 P3    427/s tr   2005.6 len   485 | ev R   1261.1 vx +0.537 ep 6.00s falls 0/5 a 0.031
+2,720,000 P3    427/s tr   2018.1 len   490 | ev R   1284.5 vx +0.572 ep 6.00s falls 0/5 a 0.032
+2,740,000 P3    427/s tr   1956.7 len   474 | ev R   1308.0 vx +0.583 ep 6.00s falls 0/5 a 0.032
+2,760,000 P3    428/s tr   1999.9 len   486 | ev R   1232.6 vx +0.488 ep 6.00s falls 0/5 a 0.030
+2,780,000 P3    428/s tr   2043.4 len   495 | ev R   1302.2 vx +0.596 ep 6.00s falls 0/5 a 0.032
+2,800,000 P3    428/s tr   2006.2 len   485 | ev R   1230.8 vx +0.470 ep 6.00s falls 0/5 a 0.032
+2,820,000 P3    428/s tr   1943.2 len   470 | ev R   1280.1 vx +0.566 ep 6.00s falls 0/5 a 0.032
+2,840,000 P3    429/s tr   2053.4 len   491 | ev R   1251.0 vx +0.499 ep 6.00s falls 0/5 a 0.031
+2,860,000 P3    429/s tr   1953.6 len   469 | ev R   1265.1 vx +0.525 ep 6.00s falls 0/5 a 0.032
+2,880,000 P3    429/s tr   2062.6 len   491 | ev R   1314.2 vx +0.604 ep 6.00s falls 0/5 a 0.031
+2,900,000 P3    429/s tr   2046.9 len   489 | ev R   1282.9 vx +0.557 ep 6.00s falls 0/5 a 0.030
+2,920,000 P3    429/s tr   1974.2 len   474 | ev R   1291.4 vx +0.559 ep 6.00s falls 0/5 a 0.032
+2,940,000 P3    429/s tr   1944.0 len   470 | ev R   1253.9 vx +0.494 ep 6.00s falls 0/5 a 0.032
+2,960,000 P3    429/s tr   2040.4 len   487 | ev R   1255.7 vx +0.516 ep 6.00s falls 0/5 a 0.032
+2,980,000 P3    429/s tr   1945.0 len   461 | ev R   1278.0 vx +0.549 ep 6.00s falls 0/5 a 0.033
+3,000,000 P3    430/s tr   1971.7 len   471 | ev R   1258.9 vx +0.504 ep 6.00s falls 0/5 a 0.035
+argv[0]=
+argv[0]=
+argv[0]=
+argv[0]=
+argv[0]=
+fin 3000000 mejor 1324.5481969729103
+argv[0]=
+== original 0
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+   20,000 P1    582/s tr    126.1 len    43 | ev R    -16.0 vx +0.197 ep 0.32s falls 5/5 a 33.364
+   40,000 P1    562/s tr     71.7 len    31 | ev R     -1.4 vx -0.242 ep 0.59s falls 5/5 a 43.915
+   60,000 P2    543/s tr     97.0 len    46 | ev R      6.0 vx -0.419 ep 0.98s falls 5/5 a 7.264
+   80,000 P2    534/s tr     67.5 len    41 | ev R      1.1 vx -0.360 ep 0.78s falls 5/5 a 1.083
+  100,000 P2    532/s tr     54.9 len    39 | ev R    -41.9 vx -0.575 ep 0.55s falls 5/5 a 0.158
+  120,000 P2    526/s tr     85.0 len    46 | ev R    127.8 vx +0.498 ep 0.94s falls 5/5 a 0.054
+  140,000 P2    519/s tr    145.7 len    53 | ev R    213.7 vx +0.216 ep 1.56s falls 5/5 a 0.052
+  160,000 P2    513/s tr    280.9 len    93 | ev R    302.6 vx -0.002 ep 2.35s falls 5/5 a 0.053
+  180,000 P3    499/s tr    294.6 len   109 | ev R   1014.3 vx +0.022 ep 6.00s falls 0/5 a 0.056
+  200,000 P3    488/s tr    749.6 len   256 | ev R    848.1 vx -0.030 ep 5.76s falls 1/5 a 0.063
+  220,000 P3    480/s tr    913.0 len   312 | ev R    666.4 vx -0.096 ep 4.81s falls 2/5 a 0.075
+  240,000 P3    472/s tr   1215.2 len   415 | ev R    934.1 vx -0.027 ep 6.00s falls 0/5 a 0.069
+  260,000 P3    464/s tr   1342.5 len   440 | ev R    981.4 vx +0.007 ep 6.00s falls 0/5 a 0.067
+  280,000 P3    460/s tr   1383.1 len   447 | ev R    863.7 vx +0.017 ep 5.61s falls 1/5 a 0.069
+  300,000 P3    455/s tr   1366.5 len   450 | ev R    956.4 vx +0.008 ep 6.00s falls 0/5 a 0.067
+  320,000 P3    452/s tr   1256.8 len   413 | ev R    965.1 vx +0.023 ep 6.00s falls 0/5 a 0.070
+  340,000 P3    448/s tr   1484.2 len   481 | ev R   1006.5 vx +0.009 ep 6.00s falls 0/5 a 0.066
+  360,000 P3    443/s tr   1349.4 len   450 | ev R   1004.9 vx -0.006 ep 6.00s falls 0/5 a 0.060
+  380,000 P3    441/s tr   1512.8 len   485 | ev R   1012.2 vx +0.020 ep 6.00s falls 0/5 a 0.064
+  400,000 P3    439/s tr   1582.5 len   497 | ev R   1015.1 vx +0.011 ep 6.00s falls 0/5 a 0.051
+  420,000 P3    438/s tr   1524.9 len   489 | ev R    955.0 vx -0.018 ep 6.00s falls 0/5 a 0.048
+  440,000 P3    436/s tr   1371.7 len   445 | ev R    971.2 vx -0.021 ep 6.00s falls 0/5 a 0.049
+  460,000 P3    435/s tr   1466.1 len   480 | ev R   1013.8 vx -0.002 ep 6.00s falls 0/5 a 0.048
+  480,000 P3    434/s tr   1425.9 len   467 | ev R    981.9 vx +0.059 ep 6.00s falls 0/5 a 0.041
+  500,000 P3    432/s tr   1462.9 len   484 | ev R   1013.8 vx +0.008 ep 6.00s falls 0/5 a 0.043
+  520,000 P3    432/s tr   1441.4 len   478 | ev R    750.5 vx +0.050 ep 4.78s falls 3/5 a 0.039
+  540,000 P3    430/s tr   1444.8 len   475 | ev R   1002.5 vx -0.011 ep 6.00s falls 0/5 a 0.039
+  560,000 P3    431/s tr   1483.9 len   490 | ev R    396.5 vx +0.202 ep 2.64s falls 4/5 a 0.036
+  580,000 P3    429/s tr   1397.0 len   452 | ev R   1020.9 vx +0.008 ep 6.00s falls 0/5 a 0.036
+  600,000 P3    428/s tr   1518.8 len   491 | ev R    991.3 vx +0.019 ep 6.00s falls 0/5 a 0.032
+  620,000 P3    427/s tr   1358.7 len   457 | ev R    977.2 vx -0.003 ep 6.00s falls 0/5 a 0.030
+  640,000 P3    427/s tr   1547.3 len   499 | ev R    928.1 vx -0.029 ep 6.00s falls 0/5 a 0.027
+  660,000 P3    427/s tr   1512.5 len   486 | ev R    970.9 vx -0.010 ep 6.00s falls 0/5 a 0.029
+  680,000 P3    426/s tr   1385.6 len   452 | ev R   1000.8 vx +0.061 ep 6.00s falls 0/5 a 0.030
+  700,000 P3    426/s tr   1440.2 len   477 | ev R    933.3 vx -0.039 ep 6.00s falls 0/5 a 0.030
+  720,000 P3    425/s tr   1470.4 len   485 | ev R    982.4 vx +0.001 ep 6.00s falls 0/5 a 0.027
+  740,000 P3    425/s tr   1464.1 len   476 | ev R    981.8 vx -0.004 ep 6.00s falls 0/5 a 0.034
+  760,000 P3    424/s tr   1489.1 len   494 | ev R    937.5 vx -0.033 ep 6.00s falls 0/5 a 0.027
+  780,000 P3    423/s tr   1444.2 len   471 | ev R   1006.2 vx +0.016 ep 6.00s falls 0/5 a 0.034
+  800,000 P3    423/s tr   1397.6 len   462 | ev R    969.7 vx +0.031 ep 6.00s falls 0/5 a 0.023
+  820,000 P3    422/s tr   1417.8 len   470 | ev R    879.5 vx -0.064 ep 6.00s falls 0/5 a 0.026
+  840,000 P3    422/s tr   1541.4 len   493 | ev R   1011.3 vx +0.110 ep 6.00s falls 0/5 a 0.023
+  860,000 P3    422/s tr   1448.3 len   470 | ev R    973.7 vx +0.004 ep 6.00s falls 0/5 a 0.024
+  880,000 P3    422/s tr   1557.0 len   491 | ev R    978.5 vx +0.052 ep 6.00s falls 0/5 a 0.023
+  900,000 P3    421/s tr   1591.2 len   500 | ev R    960.2 vx +0.040 ep 6.00s falls 0/5 a 0.026
+  920,000 P3    421/s tr   1510.9 len   474 | ev R    931.8 vx +0.009 ep 6.00s falls 0/5 a 0.022
+  940,000 P3    421/s tr   1523.2 len   500 | ev R    965.8 vx +0.033 ep 6.00s falls 0/5 a 0.021
+  960,000 P3    422/s tr   1520.3 len   494 | ev R    815.2 vx +0.110 ep 5.20s falls 2/5 a 0.023
+  980,000 P3    422/s tr   1578.8 len   496 | ev R    951.3 vx +0.042 ep 6.00s falls 0/5 a 0.020
+1,000,000 P3    422/s tr   1496.4 len   487 | ev R    970.7 vx +0.017 ep 6.00s falls 0/5 a 0.020
+1,020,000 P3    421/s tr   1553.5 len   489 | ev R    974.4 vx -0.009 ep 6.00s falls 0/5 a 0.023
+1,040,000 P3    421/s tr   1483.6 len   476 | ev R    930.9 vx -0.016 ep 6.00s falls 0/5 a 0.018
+1,060,000 P3    421/s tr   1543.4 len   500 | ev R    984.2 vx +0.023 ep 6.00s falls 0/5 a 0.016
+1,080,000 P3    421/s tr   1480.0 len   474 | ev R    773.9 vx +0.094 ep 4.89s falls 2/5 a 0.014
+1,100,000 P3    421/s tr   1512.0 len   464 | ev R    991.2 vx +0.095 ep 6.00s falls 0/5 a 0.015
+1,120,000 P3    421/s tr   1561.5 len   472 | ev R    716.2 vx +0.187 ep 4.52s falls 3/5 a 0.010
+1,140,000 P3    422/s tr   1278.1 len   396 | ev R    274.1 vx -0.161 ep 2.36s falls 4/5 a 0.012
+1,160,000 P3    423/s tr   1205.9 len   378 | ev R    869.8 vx +0.212 ep 5.10s falls 1/5 a 0.012
+1,180,000 P3    423/s tr   1189.4 len   360 | ev R    906.0 vx +0.182 ep 5.18s falls 1/5 a 0.011
+1,200,000 P3    423/s tr   1140.0 len   350 | ev R    956.2 vx +0.048 ep 6.00s falls 0/5 a 0.010
+1,220,000 P3    423/s tr   1257.6 len   391 | ev R    781.2 vx +0.243 ep 4.62s falls 2/5 a 0.015
+1,240,000 P3    423/s tr   1171.4 len   356 | ev R   1068.6 vx +0.233 ep 6.00s falls 0/5 a 0.011
+1,260,000 P3    423/s tr   1073.5 len   333 | ev R   1023.7 vx +0.105 ep 6.00s falls 0/5 a 0.011
+1,280,000 P3    423/s tr   1272.7 len   397 | ev R    938.4 vx +0.032 ep 6.00s falls 0/5 a 0.011
+1,300,000 P3    423/s tr   1356.5 len   412 | ev R    919.1 vx -0.004 ep 6.00s falls 0/5 a 0.011
+1,320,000 P3    424/s tr   1150.4 len   361 | ev R     22.0 vx -0.325 ep 1.00s falls 5/5 a 0.011
+1,340,000 P3    424/s tr   1113.3 len   351 | ev R    960.2 vx +0.084 ep 6.00s falls 0/5 a 0.014
+1,360,000 P3    424/s tr   1462.0 len   447 | ev R    842.0 vx +0.066 ep 5.18s falls 1/5 a 0.010
+1,380,000 P3    424/s tr   1583.0 len   476 | ev R   1066.5 vx +0.222 ep 6.00s falls 0/5 a 0.010
+1,400,000 P3    425/s tr   1269.3 len   383 | ev R    764.4 vx +0.322 ep 4.36s falls 2/5 a 0.009
+1,420,000 P3    425/s tr   1391.5 len   422 | ev R   1020.5 vx +0.108 ep 6.00s falls 0/5 a 0.012
+1,440,000 P3    425/s tr   1424.9 len   434 | ev R   1008.2 vx +0.093 ep 6.00s falls 0/5 a 0.012
+1,460,000 P3    425/s tr   1542.8 len   459 | ev R    997.5 vx +0.203 ep 5.73s falls 1/5 a 0.011
+1,480,000 P3    425/s tr   1362.8 len   408 | ev R   1069.8 vx +0.266 ep 6.00s falls 0/5 a 0.010
+1,500,000 P3    425/s tr   1455.2 len   435 | ev R   1046.1 vx +0.162 ep 6.00s falls 0/5 a 0.011
+1,520,000 P3    425/s tr   1400.7 len   417 | ev R   1021.7 vx +0.130 ep 6.00s falls 0/5 a 0.010
+1,540,000 P3    425/s tr   1255.8 len   378 | ev R    885.2 vx +0.346 ep 4.92s falls 2/5 a 0.017
+1,560,000 P3    425/s tr   1401.1 len   418 | ev R    637.3 vx +0.130 ep 4.11s falls 3/5 a 0.016
+1,580,000 P3    426/s tr   1345.0 len   396 | ev R    848.5 vx +0.115 ep 5.19s falls 2/5 a 0.018
+1,600,000 P3    426/s tr   1304.6 len   383 | ev R    924.6 vx +0.188 ep 5.49s falls 2/5 a 0.015
+1,620,000 P3    426/s tr   1424.1 len   416 | ev R   1007.4 vx +0.164 ep 6.00s falls 0/5 a 0.019
+1,640,000 P3    426/s tr   1414.5 len   421 | ev R   1068.7 vx +0.301 ep 5.94s falls 1/5 a 0.016
+1,660,000 P3    426/s tr   1496.3 len   429 | ev R   1123.0 vx +0.342 ep 6.00s falls 0/5 a 0.016
+1,680,000 P3    426/s tr   1417.0 len   405 | ev R   1087.6 vx +0.261 ep 6.00s falls 0/5 a 0.016
+1,700,000 P3    426/s tr   1366.6 len   395 | ev R   1084.2 vx +0.286 ep 6.00s falls 0/5 a 0.018
+1,720,000 P3    426/s tr   1380.2 len   403 | ev R   1054.4 vx +0.177 ep 6.00s falls 0/5 a 0.019
+1,740,000 P3    427/s tr   1402.4 len   409 | ev R    566.9 vx +0.195 ep 3.50s falls 4/5 a 0.019
+1,760,000 P3    427/s tr   1607.5 len   458 | ev R   1090.5 vx +0.264 ep 6.00s falls 0/5 a 0.016
+1,780,000 P3    427/s tr   1412.7 len   412 | ev R   1067.2 vx +0.207 ep 6.00s falls 0/5 a 0.016
+1,800,000 P3    427/s tr   1452.5 len   420 | ev R   1128.6 vx +0.330 ep 6.00s falls 0/5 a 0.019
+1,820,000 P3    427/s tr   1335.5 len   392 | ev R   1044.4 vx +0.295 ep 5.81s falls 1/5 a 0.018
+1,840,000 P3    427/s tr   1499.0 len   439 | ev R   1003.8 vx +0.077 ep 6.00s falls 0/5 a 0.017
+1,860,000 P3    427/s tr   1537.6 len   456 | ev R   1126.1 vx +0.346 ep 6.00s falls 0/5 a 0.018
+1,880,000 P3    427/s tr   1317.0 len   386 | ev R   1017.1 vx +0.138 ep 6.00s falls 0/5 a 0.020
+1,900,000 P3    427/s tr   1421.7 len   419 | ev R   1073.9 vx +0.206 ep 6.00s falls 0/5 a 0.017
+1,920,000 P3    427/s tr   1452.3 len   427 | ev R   1087.4 vx +0.289 ep 6.00s falls 0/5 a 0.021
+1,940,000 P3    427/s tr   1518.1 len   439 | ev R   1147.8 vx +0.368 ep 6.00s falls 0/5 a 0.018
+1,960,000 P3    427/s tr   1298.7 len   381 | ev R   1084.7 vx +0.256 ep 6.00s falls 0/5 a 0.018
+1,980,000 P3    427/s tr   1475.9 len   426 | ev R   1066.7 vx +0.251 ep 6.00s falls 0/5 a 0.020
+2,000,000 P3    427/s tr   1286.3 len   375 | ev R   1048.2 vx +0.048 ep 6.00s falls 0/5 a 0.023
+2,020,000 P3    427/s tr   1572.4 len   462 | ev R   1005.4 vx +0.132 ep 6.00s falls 0/5 a 0.022
+2,040,000 P3    427/s tr   1569.1 len   463 | ev R   1060.2 vx +0.239 ep 6.00s falls 0/5 a 0.020
+2,060,000 P3    427/s tr   1279.9 len   375 | ev R   1108.5 vx +0.311 ep 6.00s falls 0/5 a 0.021
+2,080,000 P3    427/s tr   1583.6 len   455 | ev R   1037.3 vx +0.209 ep 6.00s falls 0/5 a 0.023
+2,100,000 P3    427/s tr   1504.0 len   434 | ev R   1044.0 vx +0.346 ep 5.61s falls 1/5 a 0.023
+2,120,000 P3    427/s tr   1541.0 len   442 | ev R   1018.7 vx +0.081 ep 6.00s falls 0/5 a 0.023
+2,140,000 P3    427/s tr   1616.1 len   476 | ev R   1056.0 vx +0.169 ep 6.00s falls 0/5 a 0.026
+2,160,000 P3    427/s tr   1619.1 len   457 | ev R   1056.5 vx +0.200 ep 6.00s falls 0/5 a 0.024
+2,180,000 P3    427/s tr   1518.6 len   436 | ev R   1077.0 vx +0.254 ep 6.00s falls 0/5 a 0.026
+2,200,000 P3    427/s tr   1569.3 len   449 | ev R   1036.4 vx +0.337 ep 5.62s falls 1/5 a 0.025
+2,220,000 P3    427/s tr   1648.0 len   465 | ev R   1104.7 vx +0.287 ep 6.00s falls 0/5 a 0.022
+2,240,000 P3    427/s tr   1506.1 len   441 | ev R   1113.4 vx +0.303 ep 6.00s falls 0/5 a 0.025
+2,260,000 P3    427/s tr   1402.5 len   406 | ev R   1157.6 vx +0.420 ep 6.00s falls 0/5 a 0.021
+2,280,000 P3    427/s tr   1516.1 len   428 | ev R   1091.1 vx +0.249 ep 6.00s falls 0/5 a 0.023
+2,300,000 P3    427/s tr   1346.4 len   395 | ev R   1058.3 vx +0.215 ep 6.00s falls 0/5 a 0.023
+2,320,000 P3    427/s tr   1466.0 len   418 | ev R   1101.0 vx +0.317 ep 6.00s falls 0/5 a 0.025
+2,340,000 P3    427/s tr   1351.0 len   396 | ev R   1056.0 vx +0.203 ep 6.00s falls 0/5 a 0.023
+2,360,000 P3    427/s tr   1491.4 len   435 | ev R   1071.6 vx +0.226 ep 6.00s falls 0/5 a 0.020
+2,380,000 P3    427/s tr   1481.5 len   419 | ev R   1071.9 vx +0.266 ep 6.00s falls 0/5 a 0.026
+2,400,000 P3    427/s tr   1452.7 len   427 | ev R    747.9 vx +0.201 ep 4.50s falls 3/5 a 0.020
+2,420,000 P3    427/s tr   1240.0 len   359 | ev R    790.0 vx +0.150 ep 4.83s falls 2/5 a 0.022
+2,440,000 P3    427/s tr   1256.3 len   371 | ev R   1094.4 vx +0.292 ep 6.00s falls 0/5 a 0.026
+2,460,000 P3    427/s tr   1460.7 len   453 | ev R   1033.3 vx +0.156 ep 6.00s falls 0/5 a 0.026
+2,480,000 P3    427/s tr   1339.8 len   399 | ev R    948.8 vx +0.250 ep 5.51s falls 1/5 a 0.021
+2,500,000 P3    427/s tr   1221.0 len   372 | ev R   1089.3 vx +0.294 ep 6.00s falls 0/5 a 0.028
+2,520,000 P3    427/s tr   1469.8 len   442 | ev R   1025.5 vx +0.156 ep 6.00s falls 0/5 a 0.024
+2,540,000 P3    428/s tr   1438.2 len   440 | ev R   1076.6 vx +0.262 ep 6.00s falls 0/5 a 0.025
+2,560,000 P3    428/s tr   1371.9 len   395 | ev R   1140.5 vx +0.379 ep 6.00s falls 0/5 a 0.029
+2,580,000 P3    428/s tr   1541.0 len   450 | ev R   1088.5 vx +0.266 ep 6.00s falls 0/5 a 0.025
+2,600,000 P3    428/s tr   1601.7 len   462 | ev R   1011.4 vx +0.163 ep 5.99s falls 1/5 a 0.029
+2,620,000 P3    428/s tr   1418.1 len   409 | ev R   1070.7 vx +0.253 ep 6.00s falls 0/5 a 0.025
+2,640,000 P3    428/s tr   1395.1 len   404 | ev R    853.2 vx +0.361 ep 4.72s falls 2/5 a 0.025
+2,660,000 P3    428/s tr   1543.7 len   440 | ev R    716.8 vx +0.299 ep 4.21s falls 3/5 a 0.026
+2,680,000 P3    428/s tr   1499.3 len   430 | ev R   1094.0 vx +0.275 ep 6.00s falls 0/5 a 0.028
+2,700,000 P3    428/s tr   1578.4 len   458 | ev R   1031.9 vx +0.185 ep 6.00s falls 0/5 a 0.026
+2,720,000 P3    429/s tr   1638.8 len   476 | ev R   1063.9 vx +0.206 ep 6.00s falls 0/5 a 0.023
+2,740,000 P3    429/s tr   1533.6 len   441 | ev R   1068.3 vx +0.232 ep 6.00s falls 0/5 a 0.024
+2,760,000 P3    429/s tr   1535.7 len   444 | ev R   1129.1 vx +0.347 ep 6.00s falls 0/5 a 0.023
+2,780,000 P3    429/s tr   1410.7 len   408 | ev R   1110.8 vx +0.322 ep 6.00s falls 0/5 a 0.021
+2,800,000 P3    429/s tr   1385.5 len   402 | ev R    827.6 vx +0.250 ep 4.84s falls 2/5 a 0.022
+2,820,000 P3    429/s tr   1525.6 len   443 | ev R   1071.7 vx +0.239 ep 6.00s falls 0/5 a 0.023
+2,840,000 P3    429/s tr   1456.0 len   412 | ev R   1111.1 vx +0.314 ep 6.00s falls 0/5 a 0.025
+2,860,000 P3    429/s tr   1581.7 len   450 | ev R   1088.1 vx +0.274 ep 6.00s falls 0/5 a 0.022
+2,880,000 P3    429/s tr   1551.7 len   439 | ev R    875.2 vx +0.400 ep 4.69s falls 2/5 a 0.023
+2,900,000 P3    429/s tr   1531.6 len   435 | ev R   1080.4 vx +0.265 ep 6.00s falls 0/5 a 0.021
+2,920,000 P3    430/s tr   1489.7 len   423 | ev R   1065.9 vx +0.240 ep 6.00s falls 0/5 a 0.024
+2,940,000 P3    430/s tr   1462.9 len   412 | ev R   1050.1 vx +0.277 ep 5.89s falls 1/5 a 0.023
+2,960,000 P3    430/s tr   1462.7 len   416 | ev R   1124.2 vx +0.359 ep 6.00s falls 0/5 a 0.026
+2,980,000 P3    430/s tr   1583.8 len   448 | ev R   1118.3 vx +0.332 ep 6.00s falls 0/5 a 0.022
+3,000,000 P3    430/s tr   1498.6 len   421 | ev R   1022.0 vx +0.310 ep 5.64s falls 1/5 a 0.024
+argv[0]=
+argv[0]=
+argv[0]=
+argv[0]=
+argv[0]=
+fin 3000000 mejor 1157.568557671834
+argv[0]=
+== compact 1
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+   20,000 P1    569/s tr    123.2 len    42 | ev R    -33.2 vx +0.377 ep 0.10s falls 5/5 a 4.884
+   40,000 P1    543/s tr    113.0 len    40 | ev R    122.2 vx +0.171 ep 1.05s falls 5/5 a 1.202
+   60,000 P2    525/s tr    284.6 len    95 | ev R    383.3 vx -0.080 ep 2.90s falls 5/5 a 0.160
+   80,000 P2    488/s tr    722.8 len   216 | ev R    915.9 vx -0.020 ep 6.00s falls 0/5 a 0.065
+  100,000 P2    472/s tr   1364.1 len   385 | ev R    870.9 vx -0.027 ep 5.66s falls 1/5 a 0.068
+  120,000 P2    459/s tr   1361.9 len   392 | ev R    952.2 vx +0.023 ep 6.00s falls 0/5 a 0.063
+  140,000 P2    450/s tr   1380.3 len   400 | ev R    987.0 vx -0.013 ep 6.00s falls 0/5 a 0.057
+  160,000 P2    444/s tr   1515.7 len   443 | ev R    986.1 vx -0.001 ep 6.00s falls 0/5 a 0.053
+  180,000 P3    440/s tr   1340.0 len   460 | ev R    885.1 vx -0.049 ep 6.00s falls 0/5 a 0.045
+  200,000 P3    436/s tr   1398.0 len   478 | ev R    916.5 vx -0.041 ep 6.00s falls 0/5 a 0.045
+  220,000 P3    439/s tr   1393.7 len   471 | ev R    214.1 vx +0.005 ep 1.86s falls 5/5 a 0.035
+  240,000 P3    437/s tr   1467.2 len   493 | ev R    897.3 vx -0.030 ep 5.81s falls 1/5 a 0.030
+  260,000 P3    434/s tr   1444.0 len   494 | ev R   1008.5 vx +0.031 ep 6.00s falls 0/5 a 0.028
+  280,000 P3    432/s tr   1331.2 len   454 | ev R    989.7 vx -0.007 ep 6.00s falls 0/5 a 0.030
+  300,000 P3    431/s tr   1463.1 len   490 | ev R    981.2 vx +0.024 ep 6.00s falls 0/5 a 0.026
+  320,000 P3    429/s tr   1518.1 len   500 | ev R    924.2 vx -0.022 ep 6.00s falls 0/5 a 0.021
+  340,000 P3    429/s tr   1500.4 len   495 | ev R    925.4 vx -0.023 ep 6.00s falls 0/5 a 0.021
+  360,000 P3    428/s tr   1483.8 len   496 | ev R    918.1 vx -0.056 ep 6.00s falls 0/5 a 0.019
+  380,000 P3    429/s tr   1465.9 len   488 | ev R    569.7 vx +0.110 ep 3.78s falls 3/5 a 0.015
+== compact 1
+python.exe : pybullet build time: Oct 21 2025 11:46:21
+En línea: 1 Carácter: 374
++ ... -BENCHMARK; & C:\Users\Maicol\miniforge3\envs\latiniot\python.exe -u  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (pybullet build ...1 2025 11:46:21:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21
+pybullet build time: Oct 21 2025 11:46:21

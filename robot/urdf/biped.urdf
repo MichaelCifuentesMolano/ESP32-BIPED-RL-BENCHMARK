@@ -1,0 +1,423 @@
+<?xml version="1.0"?>
+<!--
+  12-DoF Biped Robot URDF
+  6 DoF per leg: hip_yaw, hip_roll, hip_pitch, knee_pitch, ankle_pitch, ankle_roll
+  Physical parameters from Table 2 of the paper (ARON robot design).
+
+  Coordinate convention (base_link frame):
+    x – forward
+    y – left
+    z – up
+
+  Inertia values (kg·m²):
+    Thigh (cylinder r=0.04, h=0.38, m=2.5):  Ixx=Iyy=0.03108,  Izz=0.00200
+    Shank (cylinder r=0.03, h=0.36, m=1.8):  Ixx=Iyy=0.01985,  Izz=0.00081
+    Foot  (box 0.12×0.08×0.03,   m=0.8):    Ixx=0.000487, Iyy=0.001020, Izz=0.001387
+    Pelvis(box 0.15×0.20×0.10,   m=5.0):    Ixx=0.020833, Iyy=0.013542, Izz=0.026042
+-->
+<robot name="biped_robot">
+
+  <!-- ───────────── Materials ───────────── -->
+  <material name="pelvis_color">
+    <color rgba="0.85 0.85 0.85 1.0"/>
+  </material>
+  <material name="thigh_color">
+    <color rgba="0.20 0.45 0.80 1.0"/>
+  </material>
+  <material name="shank_color">
+    <color rgba="0.20 0.60 0.80 1.0"/>
+  </material>
+  <material name="foot_color">
+    <color rgba="0.25 0.25 0.25 1.0"/>
+  </material>
+  <material name="joint_color">
+    <color rgba="0.70 0.30 0.10 1.0"/>
+  </material>
+
+  <!-- ═══════════════════════════════════════════
+       BASE LINK  (Pelvis)
+       Center of mass at hip center.
+       Robot spawned with base_link at z = 0.77 m.
+  ═══════════════════════════════════════════ -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5.0"/>
+      <inertia ixx="0.020833" ixy="0.0" ixz="0.0"
+               iyy="0.013542" iyz="0.0"
+               izz="0.026042"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.15 0.20 0.10"/>
+      </geometry>
+      <material name="pelvis_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.15 0.20 0.10"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ═══════════════════════════════════════════
+       LEFT LEG
+  ═══════════════════════════════════════════ -->
+
+  <!-- Virtual link: absorbs hip yaw → hip roll frame change (no mass) -->
+  <link name="l_hip_yaw_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0"
+               iyy="1e-6" iyz="0"
+               izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.025"/></geometry>
+      <material name="joint_color"/>
+    </visual>
+  </link>
+
+  <joint name="l_hip_yaw" type="revolute">
+    <parent link="base_link"/>
+    <child  link="l_hip_yaw_link"/>
+    <origin xyz="0 0.10 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.785" upper="0.785" effort="20.0" velocity="6.0"/>
+    <dynamics damping="0.5" friction="0.05"/>
+  </joint>
+
+  <!-- Virtual link: absorbs hip roll → hip pitch frame change -->
+  <link name="l_hip_roll_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0"
+               iyy="1e-6" iyz="0"
+               izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.025"/></geometry>
+      <material name="joint_color"/>
+    </visual>
+  </link>
+
+  <joint name="l_hip_roll" type="revolute">
+    <parent link="l_hip_yaw_link"/>
+    <child  link="l_hip_roll_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.524" upper="0.524" effort="30.0" velocity="6.0"/>
+    <dynamics damping="0.5" friction="0.05"/>
+  </joint>
+
+  <!-- Left Thigh (link 3 in DH, length l3 = 0.38 m) -->
+  <link name="l_thigh">
+    <inertial>
+      <!-- COM at midpoint of thigh, extending in -z from hip_pitch joint -->
+      <origin xyz="0 0 -0.19" rpy="0 0 0"/>
+      <mass value="2.5"/>
+      <inertia ixx="0.031083" ixy="0.0" ixz="0.0"
+               iyy="0.031083" iyz="0.0"
+               izz="0.002000"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.19" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.040" length="0.38"/>
+      </geometry>
+      <material name="thigh_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.19" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.040" length="0.38"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="l_hip_pitch" type="revolute">
+    <parent link="l_hip_roll_link"/>
+    <child  link="l_thigh"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.571" upper="1.571" effort="50.0" velocity="6.0"/>
+    <dynamics damping="0.5" friction="0.05"/>
+  </joint>
+
+  <!-- Left Shank (link 4 in DH, length l4 = 0.36 m) -->
+  <link name="l_shank">
+    <inertial>
+      <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+      <mass value="1.8"/>
+      <inertia ixx="0.019845" ixy="0.0" ixz="0.0"
+               iyy="0.019845" iyz="0.0"
+               izz="0.000810"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.030" length="0.36"/>
+      </geometry>
+      <material name="shank_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.030" length="0.36"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="l_knee_pitch" type="revolute">
+    <parent link="l_thigh"/>
+    <child  link="l_shank"/>
+    <origin xyz="0 0 -0.38" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <!-- Knee only bends backward (negative = flexion in our convention) -->
+    <limit lower="-2.618" upper="0.0" effort="80.0" velocity="6.0"/>
+    <dynamics damping="0.5" friction="0.05"/>
+  </joint>
+
+  <!-- Virtual ankle link: separates ankle_pitch and ankle_roll -->
+  <link name="l_ankle_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0"
+               iyy="1e-6" iyz="0"
+               izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.020"/></geometry>
+      <material name="joint_color"/>
+    </visual>
+  </link>
+
+  <joint name="l_ankle_pitch" type="revolute">
+    <parent link="l_shank"/>
+    <child  link="l_ankle_link"/>
+    <origin xyz="0 0 -0.36" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.785" upper="0.785" effort="30.0" velocity="6.0"/>
+    <dynamics damping="0.3" friction="0.02"/>
+  </joint>
+
+  <!-- Left Foot (link 6 in DH, length l6 = 0.12 m)
+       The foot box has its back edge near the ankle joint.
+       COM at [0.04, 0, -0.015] in l_foot frame:
+         x: 0.04 m forward of ankle (heel ‑0.02 to toe +0.10)
+         z: ‑0.015 m (half foot height below ankle)
+       Bottom face at z = ‑0.030 from ankle = ground level when standing.
+  -->
+  <link name="l_foot">
+    <inertial>
+      <origin xyz="0.04 0.0 -0.015" rpy="0 0 0"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.000487" ixy="0.0" ixz="0.0"
+               iyy="0.001020" iyz="0.0"
+               izz="0.001387"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.04 0.0 -0.015" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.12 0.08 0.03"/>
+      </geometry>
+      <material name="foot_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0.04 0.0 -0.015" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.12 0.08 0.03"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="l_ankle_roll" type="revolute">
+    <parent link="l_ankle_link"/>
+    <child  link="l_foot"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.524" upper="0.524" effort="20.0" velocity="6.0"/>
+    <dynamics damping="0.3" friction="0.02"/>
+  </joint>
+
+  <!-- ═══════════════════════════════════════════
+       RIGHT LEG  (mirror of left: y-offset negated)
+  ═══════════════════════════════════════════ -->
+
+  <link name="r_hip_yaw_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0"
+               iyy="1e-6" iyz="0"
+               izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.025"/></geometry>
+      <material name="joint_color"/>
+    </visual>
+  </link>
+
+  <joint name="r_hip_yaw" type="revolute">
+    <parent link="base_link"/>
+    <child  link="r_hip_yaw_link"/>
+    <origin xyz="0 -0.10 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.785" upper="0.785" effort="20.0" velocity="6.0"/>
+    <dynamics damping="0.5" friction="0.05"/>
+  </joint>
+
+  <link name="r_hip_roll_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0"
+               iyy="1e-6" iyz="0"
+               izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.025"/></geometry>
+      <material name="joint_color"/>
+    </visual>
+  </link>
+
+  <joint name="r_hip_roll" type="revolute">
+    <parent link="r_hip_yaw_link"/>
+    <child  link="r_hip_roll_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.524" upper="0.524" effort="30.0" velocity="6.0"/>
+    <dynamics damping="0.5" friction="0.05"/>
+  </joint>
+
+  <link name="r_thigh">
+    <inertial>
+      <origin xyz="0 0 -0.19" rpy="0 0 0"/>
+      <mass value="2.5"/>
+      <inertia ixx="0.031083" ixy="0.0" ixz="0.0"
+               iyy="0.031083" iyz="0.0"
+               izz="0.002000"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.19" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.040" length="0.38"/>
+      </geometry>
+      <material name="thigh_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.19" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.040" length="0.38"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="r_hip_pitch" type="revolute">
+    <parent link="r_hip_roll_link"/>
+    <child  link="r_thigh"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.571" upper="1.571" effort="50.0" velocity="6.0"/>
+    <dynamics damping="0.5" friction="0.05"/>
+  </joint>
+
+  <link name="r_shank">
+    <inertial>
+      <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+      <mass value="1.8"/>
+      <inertia ixx="0.019845" ixy="0.0" ixz="0.0"
+               iyy="0.019845" iyz="0.0"
+               izz="0.000810"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.030" length="0.36"/>
+      </geometry>
+      <material name="shank_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.030" length="0.36"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="r_knee_pitch" type="revolute">
+    <parent link="r_thigh"/>
+    <child  link="r_shank"/>
+    <origin xyz="0 0 -0.38" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-2.618" upper="0.0" effort="80.0" velocity="6.0"/>
+    <dynamics damping="0.5" friction="0.05"/>
+  </joint>
+
+  <link name="r_ankle_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0"
+               iyy="1e-6" iyz="0"
+               izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.020"/></geometry>
+      <material name="joint_color"/>
+    </visual>
+  </link>
+
+  <joint name="r_ankle_pitch" type="revolute">
+    <parent link="r_shank"/>
+    <child  link="r_ankle_link"/>
+    <origin xyz="0 0 -0.36" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.785" upper="0.785" effort="30.0" velocity="6.0"/>
+    <dynamics damping="0.3" friction="0.02"/>
+  </joint>
+
+  <link name="r_foot">
+    <inertial>
+      <origin xyz="0.04 0.0 -0.015" rpy="0 0 0"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.000487" ixy="0.0" ixz="0.0"
+               iyy="0.001020" iyz="0.0"
+               izz="0.001387"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.04 0.0 -0.015" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.12 0.08 0.03"/>
+      </geometry>
+      <material name="foot_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0.04 0.0 -0.015" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.12 0.08 0.03"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="r_ankle_roll" type="revolute">
+    <parent link="r_ankle_link"/>
+    <child  link="r_foot"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.524" upper="0.524" effort="20.0" velocity="6.0"/>
+    <dynamics damping="0.3" friction="0.02"/>
+  </joint>
+
+</robot>
