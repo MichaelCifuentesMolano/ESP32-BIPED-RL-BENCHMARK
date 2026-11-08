@@ -16,7 +16,7 @@
   },
   "compact_fp32": {
    "n": 40,
-   "max_abs_vs_python": 4.172325134277344e-07
+   "max_abs_vs_python": 1.0170042514801025e-05
   },
   "compact_int16": {
    "n": 40,
@@ -32,7 +32,7 @@
   "cores": 2.0,
   "revision": 3.0,
   "cpu_mhz": 240.0,
-  "flash_kb": 8192.0,
+  "flash_kb": 16384.0,
   "psram_kb": 0.0,
   "sram_total_kb": 394.18359375,
   "sram_free_kb": 375.8515625,

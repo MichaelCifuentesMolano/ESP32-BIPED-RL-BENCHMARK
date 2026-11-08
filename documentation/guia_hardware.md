@@ -1,5 +1,7 @@
 # Guia para medir con hardware real
 
+Paso a paso completo, con montajes y revision antes de energizar: `guia_conexion_hardware.md`.
+
 Todo lo anterior a esta guia se verifico sin placa. Latencia, jitter y energia reales solo salen de aqui.
 
 ## 1. Compilar y grabar
@@ -12,7 +14,7 @@ Todo lo anterior a esta guia se verifico sin placa. Latencia, jitter y energia r
 
 Cada placa se identifica sola: `read_device_info` registra chip, revision, frecuencia, flash, PSRAM y SRAM.
 
-**Primera comprobacion:** en un ESP32-S3 N8R8 `psram_kb` debe dar unos 8192. Si da 0, la PSRAM no inicio; QEMU no permite probarlo.
+**Primera comprobacion:** en el ESP32-S3 N16R8 `psram_kb` debe dar unos 8192. Si da 0, la PSRAM no inicio; QEMU no permite probarlo.
 
 ## 2. Conexion
 

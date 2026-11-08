@@ -27,7 +27,7 @@ from simulation.simulation_config import ROOT
 
 HOME = Path.home()
 PORT = 5599
-FLASH_MB = {"esp32": 4, "esp32s3": 8}
+FLASH_MB = {"esp32": 4, "esp32s3": 16}  # placa N16R8, igual a sdkconfig.defaults.esp32s3
 
 
 class SocketTransport:

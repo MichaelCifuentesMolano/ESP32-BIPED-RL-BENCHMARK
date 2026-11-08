@@ -1,9 +1,9 @@
 # ESP32-BIPED-RL-BENCHMARK
 
-Testbed para evaluar politicas SAC (36-256-256-12 y 36-64-64-12) en FP32, INT16 e INT8 sobre ESP32-WROOM-32 y ESP32-S3 N8R8,
+Testbed para evaluar politicas SAC (36-256-256-12 y 36-64-64-12) en FP32, INT16 e INT8 sobre ESP32-WROOM-32 y ESP32-S3 N16R8 (el articulo usa N8R8),
 con un bipedo 3D de 12 GdL simulado en PyBullet y conectado por UART (hardware in the loop).
 
-Estado y tareas: `documentation/PENDIENTES.md`. Informes: `documentation/fase1_inspeccion_urdf.md`, `documentation/informe_final.md`. Con placa: `documentation/guia_hardware.md`.
+Estado y tareas: `documentation/PENDIENTES.md`. Informes: `documentation/fase1_inspeccion_urdf.md`, `documentation/informe_final.md`. Con placa: `documentation/guia_conexion_hardware.md` (paso a paso) y `documentation/guia_hardware.md` (resumen).
 Formato numerico: `documentation/formato_cuantizacion.md`.
 
     conda env create -f environment.yml

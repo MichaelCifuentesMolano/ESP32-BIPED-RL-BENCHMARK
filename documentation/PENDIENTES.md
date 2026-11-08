@@ -48,41 +48,19 @@ Redirigir con `>>`, no con `>`: el segundo borra `results/training/matrix.log`, 
 
 `firmware/inference/models_generated.c` lleva hoy un actor original **aleatorio** (ensayo). `run_all` lo reemplaza; no grabarlo antes en una placa.
 
-## 3. Por generar: guia completa de conexion de hardware
+## 3. Guia de conexion de hardware: escrita
 
-**Tarea:** crear `documentation/guia_conexion_hardware.md`, paso a paso, para cuando esten los elementos. Ampliar la actual
-`documentation/guia_hardware.md`, que solo resume pines y comandos. No inventar pines ni valores: confirmar con la placa y el modulo reales.
+Hecha el 2026-11-07: `documentation/guia_conexion_hardware.md`. Lo que depende del ejemplar fisico esta marcado **[CONFIRMAR]**;
+revisarlo cuando lleguen las placas y quitar las marcas.
 
-**Compras del usuario (2026-11-07, en camino):** ESP32-S3 DevKit **N16R8** (no N8R8: 16 MB flash, PSRAM 8 MB octal igual;
-poner `FLASHSIZE_16MB` y declarar), un "ESP32 N8R8" sin identificar (falta el enlace: WROVER clasico o S3), INA226 I2C 0-36 V,
-FT232RL USB a TTL 3.3/5 V, analizador logico 8 canales 24 MHz (PulseView/sigrok). Tiene fuente regulada y multimetro.
-Decidido: la placa que no se mide lee el INA226, y se invierten. El FT232RL lleva UART0 en B03 (sin USB de la placa, sin VCC)
-y permite latency timer de 1 ms para B05. Confirmar al llegar: shunt, direccion I2C, puente 3.3 V del FT232RL.
+**Hardware del usuario (en camino):** ESP-WROOM-32 USB-C (MercadoLibre, objetivo ESP32 clasico), ESP32-S3 DevKit **N16R8**
+(objetivo S3; 16 MB flash, PSRAM 8 MB octal como la N8R8 del articulo; desviacion declarada), un ESP32 clasico propio de reserva,
+INA226 I2C 0-36 V, FT232RL USB a TTL 3.3/5 V, analizador 8 canales 24 MHz. Tiene fuente regulada y multimetro.
+Decidido: la placa que no se mide lee el INA226, y se invierten. El FT232RL lleva UART0 en B03 (sin USB de la placa, sin VCC).
+Firmware y `host/qemu_device.py` ya configurados a 16 MB para el S3.
 
-Antes de escribirla, pedir al usuario el modelo exacto de cada elemento:
-
-| Elemento | Dato que falta |
-|---|---|
-| Placa ESP32-WROOM-32 | Modelo y pinout, puente USB (CP2102, CH340 u otro) |
-| Placa ESP32-S3 N8R8 | Modelo y pinout, cual USB va a UART0 |
-| INA226 | Modulo, valor del shunt, direccion I2C |
-| Placa medidora | Cual se usa y que pines I2C |
-| Fuente regulada | Tension y limite de corriente |
-| Analizador logico | Modelo, canales, frecuencia de muestreo, software |
-| Multimetro | Para calibrar el shunt |
-
-La guia debe cubrir:
-
-- [ ] Lista de materiales, con cables y comunes de tierra.
-- [ ] Diagrama de conexion por montaje: solo UART (B01, B04), UART con analizador (B05 a B07), energia con INA226 (B03).
-- [ ] Tabla pin a pin para cada placa, con avisos de pines reservados (S3 con PSRAM octal: GPIO 26 a 37).
-- [ ] INA226 en lado alto: por donde corta la alimentacion, como evitar alimentar por USB y fuente a la vez.
-- [ ] Revision antes de energizar: polaridad, tension, limite de corriente, tierra comun.
-- [ ] Primer encendido: grabar, leer `read_device_info`, comprobar `psram_kb` cerca de 8192 en el S3.
-- [ ] Calibracion del shunt y declaracion de incertidumbre.
-- [ ] Prueba de cada senal: GPIO4, GPIO5, UART a 921600, latency timer del puerto en Windows.
-- [ ] Orden de las mediciones y donde queda cada resultado.
-- [ ] Fallos frecuentes y como diagnosticarlos.
+Riesgo abierto: en B03 el puente USB de la placa sigue unido a UART0 y puede chocar con el FT232RL. Se prueba en el paso 6.4 de la
+guia; si falla, mover el protocolo a UART1 (cambio de firmware).
 
 ## 4. Tareas que requieren hardware
 
@@ -91,7 +69,8 @@ Nada de esto se ha ejecutado. QEMU y el ESP32 virtual no son medicion.
 - [ ] **Falta codigo para B03:** `firmware/power_monitor` es solo el controlador del INA226, nunca probado en un chip real. No existe la
   aplicacion de la placa medidora, ni pines I2C definidos, ni el registro de muestras que alimenta `benchmark/energy/energy.py`.
   Hay que escribirla cuando se conozca el montaje.
-- [ ] Grabar el firmware en ambas placas y repetir la paridad contra Python en silicio real.
+- [ ] Grabar el firmware en ambas placas y repetir la paridad contra Python en silicio real. Falta apuntar
+  `host/qemu_device.py` a un puerto serie (cambio pequeno).
 - [ ] Comprobar PSRAM en el S3 (QEMU la reporta en 0).
 - [ ] B01 latencia de inferencia, B04 jitter, B03 energia.
 - [ ] B05, B06 y B07 con la placa real, para comparar con el ESP32 virtual.
