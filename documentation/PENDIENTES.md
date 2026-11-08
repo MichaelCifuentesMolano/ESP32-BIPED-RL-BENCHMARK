@@ -4,6 +4,9 @@ Corte: 2026-11-07, entrenamiento detenido a peticion del usuario. Para retomar, 
 
 ## 1. Primero: revisar el entrenamiento
 
+**2026-11-07:** matriz relanzada en segundo plano desde PowerShell, agregando a `matrix.log`. Repite compact 1 desde cero; las
+semillas 0 se saltan. Los bloques `NativeCommandError` del log son PowerShell envolviendo el stderr de pybullet: ruido, no fallo.
+
 La matriz de 6 entrenamientos (2 arquitecturas, 3 semillas, 3 M pasos, unas 2 h cada uno a 430 pasos/s) quedo **detenida**, 2 de 6 hechos. Faltan unas 8 h.
 
 | Entrenamiento | Estado al corte |
@@ -97,7 +100,8 @@ Nada de esto se ha ejecutado. QEMU y el ESP32 virtual no son medicion.
 - **RBIPEDO no tiene licencia:** se leyo, no se copio ni ejecuto. Confirmar con Kevin antes de reutilizar su codigo.
 - **Manuscrito:** avisar a los autores de las inconsistencias del informe de fase 1 (seccion "Fuera de alcance"), como el Exp. 4, que
   entro a fase 3 en 160 k y no en 1.6 M.
-- **Git:** el proyecto no tiene repositorio. Decidir si se inicia.
+- **Git:** resuelto 2026-11-07. Repositorio local sin remoto. `.gitattributes` con `* -text` para no alterar el SHA-256 del URDF.
+  Las corridas en curso (`models/*/seed*` sin `done.txt`) no se suben hasta terminar.
 
 ## 6. Datos utiles
 
