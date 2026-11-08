@@ -13,6 +13,9 @@ compact 1 termino igual que compact 0 (0.53 m/s y 0.04 caidas de 5 en los ultimo
 original 1, antes de que avance compact 2. `best.pt` sale del maximo de evaluaciones de 5 episodios y sobreestima (compact: 0.61 a 0.63
 frente a 0.53 de media); citar solo las cifras de B06 con 50 episodios.
 
+**original 1 terminado:** 0.41 m/s y 0.12 caidas de 5. No repite los 0.28 de original 0: variacion entre semillas, la matriz
+sigue sin cambios (regla acordada). El original queda por debajo del compacto en ambas semillas; es resultado, no fallo.
+
 La matriz de 6 entrenamientos (2 arquitecturas, 3 semillas, 3 M pasos, unas 2 h cada uno a 430 pasos/s) quedo **detenida**, 2 de 6 hechos. Faltan unas 8 h.
 
 | Entrenamiento | Estado al corte |

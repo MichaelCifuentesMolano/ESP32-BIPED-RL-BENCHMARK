@@ -74,13 +74,14 @@ arquitecturas y formatos dentro de este mismo entorno.
 
 ### 5.1 Entrenamiento
 
-Revision con 3 de 6 corridas terminadas (ultimos 500 k pasos, evaluacion de 5 episodios cada 20 k):
+Revision con 4 de 6 corridas terminadas (ultimos 500 k pasos, evaluacion de 5 episodios cada 20 k):
 
 | Corrida | Velocidad (m/s) | Caidas de 5 | Empieza a caminar |
 |---|---|---|---|
 | compact semilla 0 | 0.53 | 0.12 | 0.8 M |
 | compact semilla 1 | 0.53 | 0.04 | 1.62 M |
 | original semilla 0 | 0.28 | 0.48 | 1.68 M |
+| original semilla 1 | 0.41 | 0.12 | antes de 1.16 M |
 
 `best.pt` es el maximo de 150 evaluaciones de 5 episodios y sobreestima (compacto: 0.61 a 0.63 m/s frente a 0.53 de media). Las
 cifras citables son las de B06, que reevalua con 50 episodios.
