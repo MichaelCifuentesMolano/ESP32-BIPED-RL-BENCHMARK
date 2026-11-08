@@ -6,6 +6,7 @@ Sin placa corre B05, B06 y B07 con el ESP32 virtual, que ejecuta la aritmetica e
 valido, tiempos del dispositivo simulados. B01, B03 y B04 miden el dispositivo: solo tienen sentido con placa.
 """
 import argparse
+import os
 import subprocess
 import sys
 
@@ -35,7 +36,9 @@ if __name__ == "__main__":
         for force in PUSH_N:
             run("host.experiment_runner", "--group", "B07", "--seed", str(seed), "--episodes", str(a.episodes), "--push-n", str(force))
     run("host.experiment_runner", "--group", "B05", "--seed", str(min(a.seeds)), "--episodes", "10")
-    subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "firmware/build_all.ps1")], check=True)
+    # ESP-IDF se niega a activarse si hereda MSYSTEM (lanzado desde Git Bash); sin ella compila igual desde cualquier consola.
+    env = {k: v for k, v in os.environ.items() if k != "MSYSTEM"}
+    subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "firmware/build_all.ps1")], check=True, env=env)
     for target in ("esp32", "esp32s3"):
         run("host.qemu_device", target)
     run("analysis.make_report")

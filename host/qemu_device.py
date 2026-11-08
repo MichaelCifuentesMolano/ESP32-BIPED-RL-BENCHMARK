@@ -23,7 +23,7 @@ import numpy as np
 from analysis.export_models import ARCHS, FORMATS, model_id
 from host import protocol as pr
 from host.hil_controller import wait_ready
-from host.serial_interface import DeviceLink, open_serial
+from host.serial_interface import DeviceLink, DeviceTimeout, open_serial
 from reinforcement_learning.evaluation.quantization import forward_fp32, forward_quant
 from simulation.simulation_config import ROOT
 
@@ -83,6 +83,17 @@ def start_qemu(target, image):
 
 
 
+def infer_retry(link, obs, mid, retries, counter):
+    """En QEMU, con el equipo cargado, a veces una respuesta queda retenida hasta la siguiente peticion (medido: solo
+    en corridas lentas del emulador, igual con y sin bufer de TX). Se reintenta y se cuenta; en placa real retries=0."""
+    for _ in range(retries + 1):
+        try:
+            return link.infer(obs, mid)
+        except DeviceTimeout:
+            counter["timeouts"] += 1
+    return None
+
+
 def check(target, seed=0, per_model=40, port=None):
     """Sin port, contra QEMU. Con port, la misma prueba contra la placa real por puerto serie (paso 6.5 de la guia)."""
     proc = None if port else start_qemu(target, flash_image(target))
@@ -90,6 +101,8 @@ def check(target, seed=0, per_model=40, port=None):
     report = {"target": target, "port": port, "note": note, "models": {}}
     try:
         link = DeviceLink(open_serial(port) if port else SocketTransport(PORT), timeout_s=2.0)
+        retries, lost = (0 if port else 3), {"timeouts": 0}
+        report["timeouts"] = lost  # en placa real cada uno es una perdida verdadera; en QEMU, reintentos
         report["device"] = wait_ready(link)
         rng = np.random.default_rng(seed)
         for arch in ARCHS:
@@ -100,16 +113,21 @@ def check(target, seed=0, per_model=40, port=None):
             obs = obs[rng.integers(0, len(obs), per_model)]
             for fmt in FORMATS:
                 ref = forward_fp32(layers, obs) if fmt == "fp32" else forward_quant(q[fmt], obs)
-                got = np.array([link.infer(o, model_id(arch, fmt))["actions"] for o in obs], np.float32)
-                report["models"][f"{arch}_{fmt}"] = {"n": per_model, "max_abs_vs_python": float(np.abs(got - ref).max())}
+                resp = [infer_retry(link, o, model_id(arch, fmt), retries, lost) for o in obs]
+                ok_rows = [i for i, r in enumerate(resp) if r is not None]
+                got = np.array([resp[i]["actions"] for i in ok_rows], np.float32).reshape(-1, 12)
+                err = float(np.abs(got - ref[ok_rows]).max()) if ok_rows else float("inf")
+                report["models"][f"{arch}_{fmt}"] = {"n": len(ok_rows), "max_abs_vs_python": err}
                 print(arch, fmt, report["models"][f"{arch}_{fmt}"], flush=True)
-        report["bad_model_status"] = link.infer(np.zeros(36), 99)["status"]
-        report["nan_status"] = link.infer([float("nan")] * 36, 0)["status"]
+        status = lambda o, mid: (r := infer_retry(link, o, mid, retries, lost)) and r["status"]
+        report["bad_model_status"] = status(np.zeros(36), 99)
+        report["nan_status"] = status([float("nan")] * 36, 0)
         frame = bytearray(pr.encode_request(0, 0, 777, 0, np.zeros(36)))
         frame[50] ^= 1
         link.t.write(bytes(frame))
-        report["after_corrupt_frame_status"] = link.infer(np.ones(36), 0)["status"]
-        report["ok"] = (max(m["max_abs_vs_python"] for m in report["models"].values()) < 1e-4 and report["bad_model_status"] == pr.STATUS_BAD_MODEL
+        report["after_corrupt_frame_status"] = status(np.ones(36), 0)
+        complete = all(m["n"] == per_model for m in report["models"].values())
+        report["ok"] = (complete and max(m["max_abs_vs_python"] for m in report["models"].values()) < 1e-4 and report["bad_model_status"] == pr.STATUS_BAD_MODEL
                         and report["nan_status"] == pr.STATUS_NON_FINITE and report["after_corrupt_frame_status"] == pr.STATUS_OK)
     finally:
         if proc:
