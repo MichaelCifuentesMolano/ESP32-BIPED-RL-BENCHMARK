@@ -122,7 +122,7 @@ B06, sin empujes, 50 episodios por modelo y semilla (150 por fila):
 | Original | FP32 / INT16 / INT8 | 0.527 / 0.527 / 0.523 (+/- 0.10 entre semillas) | 10 / 5 / 12 de 150 |
 | Compacto | FP32 / INT16 / INT8 | 0.614 / 0.615 / 0.613 (+/- 0.01 entre semillas) | 0 / 2 / 2 de 150 |
 
-B07, empuje lateral de 0.1 s, episodios con caida de 150:
+B07, empuje de 0.1 s en el ciclo 100, alternando sentido y eje (frontal o lateral); episodios con caida de 150:
 
 | Actor | Formato | 60 N | 100 N | 140 N |
 |---|---|---|---|---|
@@ -159,8 +159,12 @@ Montaje y orden en `guia_conexion_hardware.md`. El codigo esta escrito y probado
   y B01 (`results/B01/`). Mediana de inferencia: original 41.2 / 25.6 / 14.2 ms, compacto 1.40 / 0.73 / 0.54 ms (FP32 / INT16 /
   INT8). El original solo entra en el plazo de 20 ms en INT8. Se midio con el firmware anterior a `run_all`: la latencia depende de
   la arquitectura, no del valor de los pesos, pero la paridad hay que repetirla tras grabar el firmware nuevo. Decision abierta D7: pesos en flash (actual) o en SRAM.
-- Paridad y B01 en el S3, y `psram_kb` cerca de 8192.
-- B04: jitter real, con el PC sin carga.
+- Hecho en el mismo ESP32, 2026-11-08, PC sin carga, firmware de `run_all` en COM6: paridad (identica bit a bit a la del
+  7/11), B01, B04 (100 000 inferencias por modelo) y B05 (10 episodios). Cifras y lectura en `datos_paper.md`, secciones 5.1
+  a 5.4. Resumen: inferencia determinista (desviacion de 1 a 21 us); el compacto camina en la placa igual que en el virtual;
+  el original no entrega ninguna accion dentro del plazo de 15 ms de B05 y el robot cae en todos los episodios.
+- Paridad, B01, B04 y B05 en el S3, y `psram_kb` cerca de 8192.
+- B06 y B07 en placa.
 - B05 a B07 en placa, para contrastar con el ESP32 virtual.
 - B03: energia. El INA226 real no se ha probado; QEMU no lo emula.
 - Riesgo abierto: en B03 el puente USB de la placa medida sigue unido a UART0 y puede chocar con el FT232RL (paso 6.4 de la guia).

@@ -1,6 +1,6 @@
 {
  "target": "esp32",
- "port": "COM5",
+ "port": "COM6",
  "note": "paridad en placa real",
  "models": {
   "original_fp32": {

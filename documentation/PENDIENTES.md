@@ -47,22 +47,27 @@ guia; si falla, mover el protocolo a UART1 (cambio de firmware).
 - B01 (mediana de inferencia): original 41.2 / 25.6 / 14.2 ms, compacto 1.40 / 0.73 / 0.54 ms (FP32 / INT16 / INT8). Ida y vuelta
   unos 5.4 ms mas. Plazo de 20 ms: compacto 100 %, original INT8 79 %, original FP32 e INT16 0 %.
 - Causa: pesos `static const` en flash leidos por la cache de 32 KB; el original FP32 (313 KB) ni cabe en la SRAM libre (299 KB).
-- Repetir B04 y B05 con el PC libre: la ida y vuelta puede estar inflada por la carga.
 - **Decision abierta (D7):** dejar los pesos en flash (despliegue estandar, como TFLite Micro) o copiar a SRAM los que quepan.
 
-Nada de esto se ha ejecutado. QEMU y el ESP32 virtual no son medicion.
+**2026-11-08, mismo ESP32 en COM6, PC sin carga, firmware de `run_all` (semilla 0):** grabado, paridad identica bit a bit a la
+del 7/11, B01 (1 000), B04 (100 000 por modelo, 15:03 a 18:18, 0 errores de enlace) y B05 (10 episodios). Cifras en
+`documentation/datos_paper.md`, seccion 5. La ida y vuelta del 7/11 no estaba inflada: el enlace cuesta 5.2 a 5.8 ms con el PC libre.
+En B05 el original pierde el 100 % de los ciclos (plazo de 15 ms) y cae siempre; el compacto camina igual que en el virtual.
+Registro: `results/hw_2026-11-08.log`. B01 sobrescribio las carpetas del 7/11 (mismo identificador); la version anterior esta en git.
 
-- [ ] **Falta codigo para B03:** `firmware/power_monitor` es solo el controlador del INA226, nunca probado en un chip real. No existe la
-  aplicacion de la placa medidora, ni pines I2C definidos, ni el registro de muestras que alimenta `benchmark/energy/energy.py`.
-  Hay que escribirla cuando se conozca el montaje.
-- [ ] Grabar el firmware en ambas placas y repetir la paridad contra Python en silicio real. Falta apuntar
-  `host/qemu_device.py` a un puerto serie (cambio pequeno).
-- [ ] Comprobar PSRAM en el S3 (QEMU la reporta en 0).
-- [ ] B01 latencia de inferencia, B04 jitter, B03 energia.
-- [ ] B05, B06 y B07 con la placa real, para comparar con el ESP32 virtual.
-- [ ] Confirmar que GPIO4 y GPIO5 estan libres en las placas concretas.
+Pendiente con placa:
+
+- [ ] B03 energia: el codigo existe (`firmware/meter_app`, `host/energy_runner.py`) y se probo con medidora simulada; falta el
+  montaje con el INA226 real y calibrar el shunt (guia, secciones 8 y 9).
+- [ ] ESP32-S3: grabar, paridad, PSRAM (QEMU la reporta en 0), B01, B04, B05.
+- [ ] B06 y B07 en placa (opcional: B05 ya muestra que el compacto se comporta igual que en el virtual).
+- [ ] Confirmar GPIO4 y GPIO5 con el analizador (guia, seccion 7). Sirve ademas como verificacion independiente de B01.
 
 ## 5. Decisiones abiertas del usuario
+
+- **Plazo de B05 (nuevo, 2026-11-08):** el host espera la accion 15 ms (`TIMEOUT_S` en `host/experiment_runner.py`), sin
+  documentar hasta hoy. Con 20 ms el original INT8 cumpliria el 75 % de los ciclos en vez de 0 %. Decidir si 15 ms se mantiene
+  (y se justifica en el articulo) o si se repite B05 con 20 ms como variante.
 
 - **D1, rodilla:** en el URDF flexiona hacia la punta del pie. Mirar el ARON real; si difiere, usar copia adaptada del URDF, declararlo y
   reentrenar. Todo lo entrenado hasta ahora usa el URDF sin cambios.

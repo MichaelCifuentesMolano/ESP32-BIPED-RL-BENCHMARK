@@ -1,0 +1,25 @@
+pybullet build time: Oct 21 2025 11:46:21
+{'chip_model': 1.0, 'cores': 2.0, 'revision': 301.0, 'cpu_mhz': 240.0, 'flash_kb': 4096.0, 'psram_kb': 0.0, 'sram_total_kb': 387.32421875, 'sram_free_kb': 369.109375, 'idf_major': 5.0, 'idf_minor': 5.0, 'idf_patch': 1.0, 'model_count': 6.0, 'min_free_heap': 299500}
+original fp32 B01_f6aae596 {"n": 1000, "mean": 41161.34, "median": 41161.0, "p95": 41162.0, "p99": 41166.0, "max": 41166.0, "min": 41153.0, "std": 1.2249081598226048}
+original int16 B01_2612c142 {"n": 1000, "mean": 25554.902, "median": 25552.0, "p95": 25573.05, "p99": 25588.0, "max": 25609.0, "min": 25511.0, "std": 10.655158187469578}
+original int8 B01_70168681 {"n": 1000, "mean": 14164.459, "median": 14178.0, "p95": 14189.0, "p99": 14189.0, "max": 14192.0, "min": 14135.0, "std": 21.41957793701827}
+compact fp32 B01_5889b4c5 {"n": 1000, "mean": 1399.152, "median": 1396.0, "p95": 1398.0, "p99": 1398.0, "max": 4031.0, "min": 1395.0, "std": 83.27030020361403}
+compact int16 B01_ef9af197 {"n": 1000, "mean": 731.318, "median": 728.0, "p95": 735.0, "p99": 736.0, "max": 2855.0, "min": 724.0, "std": 67.27246744396994}
+compact int8 B01_2a96533c {"n": 1000, "mean": 546.282, "median": 544.0, "p95": 548.0, "p99": 549.0, "max": 1648.0, "min": 538.0, "std": 34.95091523837394}
+pybullet build time: Oct 21 2025 11:46:21
+{'chip_model': 1.0, 'cores': 2.0, 'revision': 301.0, 'cpu_mhz': 240.0, 'flash_kb': 4096.0, 'psram_kb': 0.0, 'sram_total_kb': 387.32421875, 'sram_free_kb': 369.109375, 'idf_major': 5.0, 'idf_minor': 5.0, 'idf_patch': 1.0, 'model_count': 6.0, 'min_free_heap': 299500}
+argv[0]=
+original fp32 B05_6284ae58 {"return": 80.58904601110856, "duration_s": 1.6179999999999999, "distance_m": -0.6725979944375108, "speed_mps": -0.4158508373886599, "pitch_rms": 0.3355379979819727, "roll_rms": 0.007717244332154381, "peak_force_n": 129.33135162506642, "falls": 10, "episodes": 10, "speed_std": 0.011270971565029897}
+original int16 B05_93b5c362 {"return": 80.58906615373174, "duration_s": 1.6179999999999999, "distance_m": -0.6725978888330605, "speed_mps": -0.4158507729957025, "pitch_rms": 0.3355379946309181, "roll_rms": 0.007717365039147274, "peak_force_n": 129.33134896202841, "falls": 10, "episodes": 10, "speed_std": 0.011271060815838101}
+original int8 B05_7358dc5b {"return": 80.58906615373174, "duration_s": 1.6179999999999999, "distance_m": -0.6725978888330605, "speed_mps": -0.4158507729957025, "pitch_rms": 0.3355379946309181, "roll_rms": 0.007717365039147274, "peak_force_n": 129.33134896202841, "falls": 10, "episodes": 10, "speed_std": 0.011271060815838101}
+compact fp32 B05_e8335f74 {"return": 1325.0098004943593, "duration_s": 6.0, "distance_m": 3.638703832151709, "speed_mps": 0.6064506386919516, "pitch_rms": 0.14340550614400005, "roll_rms": 0.12032663933058649, "peak_force_n": 519.6252186624713, "falls": 0, "episodes": 10, "speed_std": 0.013922360304944073}
+compact int16 B05_0d2efce1 {"return": 1331.697589155476, "duration_s": 6.0, "distance_m": 3.7068045439833965, "speed_mps": 0.617800757330566, "pitch_rms": 0.1442413133858628, "roll_rms": 0.119596106707301, "peak_force_n": 522.1967385814775, "falls": 0, "episodes": 10, "speed_std": 0.01876467659720118}
+compact int8 B05_38563bfc {"return": 1327.4604618820165, "duration_s": 6.0, "distance_m": 3.6577013024608114, "speed_mps": 0.6096168837434687, "pitch_rms": 0.1450295659794119, "roll_rms": 0.11898564527416182, "peak_force_n": 508.36887571943026, "falls": 0, "episodes": 10, "speed_std": 0.010774343011421446}
+pybullet build time: Oct 21 2025 11:46:21
+{'chip_model': 1.0, 'cores': 2.0, 'revision': 301.0, 'cpu_mhz': 240.0, 'flash_kb': 4096.0, 'psram_kb': 0.0, 'sram_total_kb': 387.32421875, 'sram_free_kb': 369.109375, 'idf_major': 5.0, 'idf_minor': 5.0, 'idf_patch': 1.0, 'model_count': 6.0, 'min_free_heap': 299500}
+original fp32 B04_1461dfb7 {"n": 100000, "mean": 41161.37513, "median": 41161.0, "p95": 41162.0, "p99": 41166.0, "max": 41171.0, "min": 41156.0, "std": 1.154256246723404}
+original int16 B04_b3074249 {"n": 100000, "mean": 25554.82522, "median": 25552.0, "p95": 25574.0, "p99": 25592.0, "max": 25632.0, "min": 25507.0, "std": 11.48512394149928}
+original int8 B04_8f5eb827 {"n": 100000, "mean": 14164.22731, "median": 14176.0, "p95": 14188.0, "p99": 14189.0, "max": 14193.0, "min": 14134.0, "std": 21.43282156329166}
+compact fp32 B04_84d63cec {"n": 100000, "mean": 1396.57275, "median": 1397.0, "p95": 1398.0, "p99": 1398.0, "max": 4031.0, "min": 1395.0, "std": 8.35564285004451}
+compact int16 B04_d701b317 {"n": 100000, "mean": 729.14426, "median": 728.0, "p95": 735.0, "p99": 736.0, "max": 2856.0, "min": 715.0, "std": 7.525267374146915}
+compact int8 B04_ee615891 {"n": 100000, "mean": 545.12534, "median": 544.0, "p95": 548.0, "p99": 549.0, "max": 1649.0, "min": 535.0, "std": 4.350339053958898}
