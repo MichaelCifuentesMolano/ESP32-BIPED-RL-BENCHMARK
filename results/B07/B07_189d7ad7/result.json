@@ -1,0 +1,27 @@
+{
+ "id": "B07_189d7ad7",
+ "group": "B07",
+ "timestamp": "2026-11-08T13:53:38",
+ "python": "3.11.18",
+ "host": "Windows-10-10.0.26100-SP0",
+ "measured_on_hardware": false,
+ "model": "compact",
+ "precision": "int16",
+ "platform": "virtual",
+ "seed": 1,
+ "repetitions": 50,
+ "mode": "B",
+ "push": 100.0,
+ "summary": {
+  "return": 1089.3754764298976,
+  "duration_s": 5.123200000000001,
+  "distance_m": 2.95938646463781,
+  "speed_mps": 0.5868369319693967,
+  "pitch_rms": 0.15881879510433777,
+  "roll_rms": 0.12458068226025705,
+  "peak_force_n": 525.541352125398,
+  "falls": 14,
+  "episodes": 50,
+  "speed_std": 0.12019731573348302
+ }
+}

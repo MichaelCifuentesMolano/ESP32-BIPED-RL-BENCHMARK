@@ -3,30 +3,30 @@
  "models": {
   "original_fp32": {
    "model_id": 0,
-   "trained": false,
+   "trained": true,
    "param_bytes": 313392
   },
   "original_int16": {
    "model_id": 1,
-   "trained": false,
+   "trained": true,
    "calibration_percentile": 100.0,
    "param_bytes": 162592,
-   "mae": 0.0002503749441643777,
-   "rmse": 0.002956584288464706,
-   "max_abs": 0.15361705422401428,
-   "p999_abs": 0.09707240015268326,
-   "outside_calib": 0.044
+   "mae": 0.0007110204836608126,
+   "rmse": 0.021193178543630144,
+   "max_abs": 1.752835214138031,
+   "p999_abs": 0.8446754813194275,
+   "outside_calib": 0.009753404490246595
   },
   "original_int8": {
    "model_id": 2,
-   "trained": false,
-   "calibration_percentile": 99.99,
+   "trained": true,
+   "calibration_percentile": 99.9,
    "param_bytes": 84768,
-   "mae": 0.0069074521020717535,
-   "rmse": 0.009568133321063078,
-   "max_abs": 0.17053726315498352,
-   "p999_abs": 0.10795223712921143,
-   "outside_calib": 0.044
+   "mae": 0.03477335831945054,
+   "rmse": 0.08983096488405501,
+   "max_abs": 1.9855749011039734,
+   "p999_abs": 1.9338436126708984,
+   "outside_calib": 0.009753404490246595
   },
   "compact_fp32": {
    "model_id": 3,

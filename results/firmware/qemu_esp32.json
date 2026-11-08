@@ -5,11 +5,11 @@
  "models": {
   "original_fp32": {
    "n": 40,
-   "max_abs_vs_python": 5.960464477539062e-07
+   "max_abs_vs_python": 2.0116567611694336e-06
   },
   "original_int16": {
    "n": 40,
-   "max_abs_vs_python": 5.960464477539063e-08
+   "max_abs_vs_python": 1.1920928955078125e-07
   },
   "original_int8": {
    "n": 40,
@@ -17,7 +17,7 @@
   },
   "compact_fp32": {
    "n": 40,
-   "max_abs_vs_python": 1.0170042514801025e-05
+   "max_abs_vs_python": 1.2814998626708984e-06
   },
   "compact_int16": {
    "n": 40,
@@ -27,6 +27,9 @@
    "n": 40,
    "max_abs_vs_python": 1.1920928955078125e-07
   }
+ },
+ "timeouts": {
+  "timeouts": 0
  },
  "device": {
   "chip_model": 1.0,

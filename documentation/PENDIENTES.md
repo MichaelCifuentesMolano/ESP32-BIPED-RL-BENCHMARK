@@ -1,62 +1,30 @@
 # Pendientes para la proxima sesion
 
-Corte: 2026-11-07, entrenamiento detenido a peticion del usuario. Para retomar, pedir: "lee documentation/PENDIENTES.md y sigue con el proyecto".
+Corte: 2026-11-08, 15:00. Para retomar, pedir: "lee documentation/PENDIENTES.md y sigue con el proyecto".
 
-## 1. Primero: revisar el entrenamiento
+## 1. Estado
 
-**2026-11-07:** matriz relanzada en segundo plano desde PowerShell, agregando a `matrix.log`. Repite compact 1 desde cero; las
-semillas 0 se saltan. Los bloques `NativeCommandError` del log son PowerShell envolviendo el stderr de pybullet: ruido, no fallo.
+Entrenamiento (6 corridas) y `run_all` terminados y revisados el 2026-11-08: registros completos y sin NaN, 90 pruebas correctas,
+paridad en QEMU de ambas placas con el firmware nuevo. Resultados escritos en `documentation/informe_final.md`, seccion 5.
+Historial de la matriz en `results/training/matrix.log` y en git.
 
-**Revision 2026-11-07 (original 1 en 800 k):** registros coherentes (sin NaN, cada 20 k, fases en 60 k y 180 k, 430 a 450 pasos/s).
-compact 1 termino igual que compact 0 (0.53 m/s y 0.04 caidas de 5 en los ultimos 500 k), aunque empezo a caminar en 1.62 M y no en
-0.8 M: el arranque tardio del original 0 cabe en la variacion entre semillas, su meseta de 0.28 m/s todavia no. Decidir al terminar
-original 1, antes de que avance compact 2. `best.pt` sale del maximo de evaluaciones de 5 episodios y sobreestima (compact: 0.61 a 0.63
-frente a 0.53 de media); citar solo las cifras de B06 con 50 episodios.
-
-**original 1 terminado:** 0.41 m/s y 0.12 caidas de 5. No repite los 0.28 de original 0: variacion entre semillas, la matriz
-sigue sin cambios (regla acordada). El original queda por debajo del compacto en ambas semillas; es resultado, no fallo.
-
-La matriz de 6 entrenamientos (2 arquitecturas, 3 semillas, 3 M pasos, unas 2 h cada uno a 430 pasos/s) quedo **detenida**, 2 de 6 hechos. Faltan unas 8 h.
-
-| Entrenamiento | Estado al corte |
-|---|---|
-| compact semilla 0 | Terminado. Ultimos 500 k pasos: 0.53 m/s, 0.12 caidas de 5 por evaluacion |
-| original semilla 0 | Terminado. Ultimos 500 k pasos: 0.28 m/s, 0.46 caidas de 5. Quieto hasta 1 M pasos, camina despues, irregular |
-| compact 1 | Detenido a unos 380 k pasos. Se repite desde cero al relanzar |
-| original 1, compact 2, original 2 | Sin empezar |
-
-Comprobar:
-
-    Get-Content results\training\matrix.log -Tail 3
-    Get-ChildItem models\*\seed*\done.txt
-
-**Para continuar:** `train.py` no reanuda desde `last.pt`. La corrida a medias se
-pierde y empieza de cero; las que tienen `done.txt` se saltan. Relanzar desde el entorno `latiniot`, sin mas cambios:
-
-    python -m reinforcement_learning.training.run_matrix --seeds 0 1 2 --steps 3000000
-
-Redirigir con `>>`, no con `>`: el segundo borra `results/training/matrix.log`, que tiene el historial de las semillas 0.
-
-**Decision por tomar:** con una semilla, el original rinde la mitad que el compacto. Se dejo seguir la matriz sin cambios: la semilla 1 dice si es variacion entre semillas o algo sistematico. Si se repite, investigar (por ejemplo tasa de aprendizaje), antes de la semilla 2. El compacto iba a
-0.23 m/s a 800 k pasos. Solo intervenir si falla de verdad, y aplicar lo mismo a ambas arquitecturas.
+**Firmware nuevo:** `firmware/inference/models_generated.c` ya lleva los modelos entrenados de la semilla 0. El ESP32 de COM5 tiene
+grabado el anterior: reflashear antes de cualquier medicion y repetir la paridad en silicio.
 
 ## 2. Tareas sin hardware, en orden
 
 1. [x] Terminar la matriz de entrenamiento. Terminada 2026-11-08 2:50 a. m., 6 `done.txt`. Original semilla 2 camina a ~0.5 m/s
    al final (5 episodios); el original varia mucho entre semillas, el compacto no.
-2. [ ] **PROXIMA SESION, primer paso:** correr `python -m benchmark.run_all --seeds 0 1 2`. Nunca se ha ejecutado como tal: el ensayo llamo a sus pasos por separado, sin
-   firmware ni QEMU. Con el barrido de 60, 100 y 140 N de B07 tarda varias horas.
-3. [ ] Revisar `results/report/tables.md` y las cuatro figuras.
-4. [ ] Confirmar que 60, 100 y 140 N siguen separando resultados tambien en el actor original (se midio solo con el compacto).
-5. [ ] Correr toda la suite junta: `python -m pytest -q`. Al corte solo se repitieron 37 pruebas afectadas. PyBullet llena la salida
-   con `argv[0]=`: filtrar con `passed|failed`.
-6. [ ] Escribir `documentation/informe_final.md`, con estas desviaciones declaradas: tobillo 0.3, ganancias PD, termino de energia
-   (tau/tau_max)^2, sesgo inicial del actor, ruido de reset 0.02, criticos 256-256 en ambas arquitecturas, calendario 40 k / 160 k / 3 M,
-   barrido de empujes en B07.
+2. [x] `run_all --seeds 0 1 2`: 2026-11-08, 12:43 a 14:45, sin errores. Registro en `results/run_all.log`.
+3. [x] `results/report/tables.md` y las cuatro figuras revisados. Los puntos que parecen faltar en dos figuras estan encimados
+   (valores casi iguales), no perdidos.
+4. [x] 60, 100 y 140 N separan resultados tambien en el original: las caidas suben con la fuerza en los 6 modelos y 3 semillas.
+   B07 no separa formatos (ninguna diferencia significativa tras Bonferroni).
+5. [x] `pytest -q`: 90 correctas, antes y despues de `run_all`.
+6. [x] `documentation/informe_final.md` completado (secciones 5 y 6). Corregido: decia que `environment.yml` se habia probado en
+   un entorno limpio, sin evidencia de ello; y que el barrido de B07 separa formatos.
 7. [ ] Probar `environment.yml` en un entorno limpio (lineas de `torch` y `ziglang` sin verificar).
-8. [ ] Actualizar la memoria del proyecto.
-
-`firmware/inference/models_generated.c` lleva hoy un actor original **aleatorio** (ensayo). `run_all` lo reemplaza; no grabarlo antes en una placa.
+8. [x] Actualizar la memoria del proyecto.
 
 ## 3. Guia de conexion de hardware: escrita
 
