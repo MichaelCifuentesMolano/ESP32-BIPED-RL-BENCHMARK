@@ -42,8 +42,9 @@ Redirigir con `>>`, no con `>`: el segundo borra `results/training/matrix.log`, 
 
 ## 2. Tareas sin hardware, en orden
 
-1. [ ] Terminar la matriz de entrenamiento.
-2. [ ] Correr `python -m benchmark.run_all --seeds 0 1 2`. Nunca se ha ejecutado como tal: el ensayo llamo a sus pasos por separado, sin
+1. [x] Terminar la matriz de entrenamiento. Terminada 2026-11-08 2:50 a. m., 6 `done.txt`. Original semilla 2 camina a ~0.5 m/s
+   al final (5 episodios); el original varia mucho entre semillas, el compacto no.
+2. [ ] **PROXIMA SESION, primer paso:** correr `python -m benchmark.run_all --seeds 0 1 2`. Nunca se ha ejecutado como tal: el ensayo llamo a sus pasos por separado, sin
    firmware ni QEMU. Con el barrido de 60, 100 y 140 N de B07 tarda varias horas.
 3. [ ] Revisar `results/report/tables.md` y las cuatro figuras.
 4. [ ] Confirmar que 60, 100 y 140 N siguen separando resultados tambien en el actor original (se midio solo con el compacto).
