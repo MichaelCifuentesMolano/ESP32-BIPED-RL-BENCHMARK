@@ -1,0 +1,53 @@
+{
+ "target": "esp32s3",
+ "port": "COM8",
+ "note": "paridad en placa real",
+ "models": {
+  "original_fp32": {
+   "n": 40,
+   "max_abs_vs_python": 2.3096799850463867e-06
+  },
+  "original_int16": {
+   "n": 40,
+   "max_abs_vs_python": 1.1920928955078125e-07
+  },
+  "original_int8": {
+   "n": 40,
+   "max_abs_vs_python": 1.1920928955078125e-07
+  },
+  "compact_fp32": {
+   "n": 40,
+   "max_abs_vs_python": 9.238719940185547e-07
+  },
+  "compact_int16": {
+   "n": 40,
+   "max_abs_vs_python": 1.1920928955078125e-07
+  },
+  "compact_int8": {
+   "n": 40,
+   "max_abs_vs_python": 1.1920928955078125e-07
+  }
+ },
+ "timeouts": {
+  "timeouts": 0
+ },
+ "device": {
+  "chip_model": 9.0,
+  "cores": 2.0,
+  "revision": 2.0,
+  "cpu_mhz": 240.0,
+  "flash_kb": 16384.0,
+  "psram_kb": 8192.0,
+  "sram_total_kb": 426.1826171875,
+  "sram_free_kb": 377.8857421875,
+  "idf_major": 5.0,
+  "idf_minor": 5.0,
+  "idf_patch": 1.0,
+  "model_count": 6.0,
+  "min_free_heap": 8738328
+ },
+ "bad_model_status": 1,
+ "nan_status": 2,
+ "after_corrupt_frame_status": 0,
+ "ok": true
+}

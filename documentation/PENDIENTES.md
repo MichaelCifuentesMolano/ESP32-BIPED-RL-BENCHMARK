@@ -31,7 +31,7 @@ grabado el anterior: reflashear antes de cualquier medicion y repetir la paridad
 Hecha el 2026-11-07: `documentation/guia_conexion_hardware.md`. Lo que depende del ejemplar fisico esta marcado **[CONFIRMAR]**;
 revisarlo cuando lleguen las placas y quitar las marcas.
 
-**Hardware del usuario (en camino):** ESP-WROOM-32 USB-C (MercadoLibre, objetivo ESP32 clasico), ESP32-S3 DevKit **N16R8**
+**Hardware del usuario (todo en mano desde 2026-11-09, falta revisar las marcas [CONFIRMAR]):** ESP-WROOM-32 USB-C (MercadoLibre, objetivo ESP32 clasico), ESP32-S3 DevKit **N16R8**
 (objetivo S3; 16 MB flash, PSRAM 8 MB octal como la N8R8 del articulo; desviacion declarada), un ESP32 clasico propio de reserva,
 INA226 I2C 0-36 V, FT232RL USB a TTL 3.3/5 V, analizador 8 canales 24 MHz. Tiene fuente regulada y multimetro.
 Decidido: la placa que no se mide lee el INA226, y se invierten. El FT232RL lleva UART0 en B03 (sin USB de la placa, sin VCC).
@@ -59,7 +59,17 @@ Pendiente con placa:
 
 - [ ] B03 energia: el codigo existe (`firmware/meter_app`, `host/energy_runner.py`) y se probo con medidora simulada; falta el
   montaje con el INA226 real y calibrar el shunt (guia, secciones 8 y 9).
-- [ ] ESP32-S3: grabar, paridad, PSRAM (QEMU la reporta en 0), B01, B04, B05.
+- [x] ESP32-S3 (2026-11-09, COM8, puente CH343 1A86:55D3, chip rev. 2, firmware de 5cf27ca): grabado, paridad ok (error max 2.3e-6 FP32,
+  1.2e-7 enteros, rechaza modelo inexistente, NaN y trama corrupta), PSRAM 8192 kB, flash 16 MB. B01 mediana: original 20.71 / 11.12 /
+  5.89 ms, compacto 0.20 / 0.41 / 0.31 ms (FP32 / INT16 / INT8). En el S3 el compacto FP32 es mas rapido que INT16 e INT8.
+  Registro: `results/hw_2026-11-09_s3.log`. El conector USB/OTG (303A:4001) no sirve: el protocolo va por el COM/UART.
+- [x] ESP32-S3 B05 (2026-11-11, 10 episodios, plazo 15 ms, mismo firmware): el compacto camina igual que en el clasico
+  (0.61 m/s, 0 caidas, 0 % ciclos perdidos en los 3 formatos). Original FP32: 100 % perdidos, 10 caidas (igual que el clasico).
+  Original INT16: 30.3 % perdidos (11.1 ms de inferencia + unos 3.6 ms de enlace roza los 15 ms), 10 caidas. **Original INT8:
+  0 % perdidos, 1 caida de 10, 0.41 m/s**: en el S3 el original solo es desplegable en INT8. Enlace medio en B05 unos 3.7 ms.
+- [x] ESP32-S3 B04 (2026-11-11, 10:24 a 12:08, 100 000 por modelo, n completo en los 6): mediana original 20.71 / 11.12 / 5.89 ms,
+  compacto 0.20 / 0.41 / 0.31 ms (FP32 / INT16 / INT8); p99 a 1 o 2 us de la mediana; maximos 1.9 ms en compacto FP32 y 1.2 ms
+  en INT16 (picos raros). Confirma B01. Registro: `results/hw_2026-11-09_s3.log`.
 - [ ] B06 y B07 en placa (opcional: B05 ya muestra que el compacto se comporta igual que en el virtual).
 - [ ] Confirmar GPIO4 y GPIO5 con el analizador (guia, seccion 7). Sirve ademas como verificacion independiente de B01.
 

@@ -1,0 +1,33 @@
+﻿python.exe : pybullet build time: Oct 21 2025 11:46:21
+En línea: 1 Carácter: 361
++ ... ython.exe"; & $py -m host.experiment_runner --group B01 --port COM8 - ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (pybullet build ...1 2025 11:46:21:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+{'chip_model': 9.0, 'cores': 2.0, 'revision': 2.0, 'cpu_mhz': 240.0, 'flash_kb': 16384.0, 'psram_kb': 8192.0, 'sram_total_kb': 426.1826171875, 'sram_free_kb': 377.8857421875, 'idf_major': 5.0, 'idf_minor': 5.0, 'idf_patch': 1.0, 'model_count': 6.0, 'min_free_heap': 8738328}
+original fp32 B01_31dcd0f1 {"n": 1000, "mean": 20708.946, "median": 20709.0, "p95": 20711.0, "p99": 20711.0, "max": 20712.0, "min": 20705.0, "std": 1.4377357198038867}
+original int16 B01_e6aa5602 {"n": 1000, "mean": 11117.054, "median": 11117.0, "p95": 11120.0, "p99": 11120.0, "max": 11124.0, "min": 11111.0, "std": 1.726581593785825}
+original int8 B01_964cf385 {"n": 1000, "mean": 5889.346, "median": 5889.0, "p95": 5891.0, "p99": 5892.0, "max": 5904.0, "min": 5883.0, "std": 1.2515126847139824}
+compact fp32 B01_546704d2 {"n": 1000, "mean": 205.475, "median": 202.0, "p95": 208.0, "p99": 208.0, "max": 1945.0, "min": 201.0, "std": 55.1173963009865}
+compact int16 B01_9fcce53a {"n": 1000, "mean": 410.708, "median": 410.0, "p95": 411.0, "p99": 411.0, "max": 1156.0, "min": 405.0, "std": 23.58416282169031}
+compact int8 B01_dfd348a7 {"n": 1000, "mean": 306.472, "median": 306.0, "p95": 307.0, "p99": 307.0, "max": 659.0, "min": 302.0, "std": 11.162760232128967}
+pybullet build time: Oct 21 2025 11:46:21
+{'chip_model': 9.0, 'cores': 2.0, 'revision': 2.0, 'cpu_mhz': 240.0, 'flash_kb': 16384.0, 'psram_kb': 8192.0, 'sram_total_kb': 426.1826171875, 'sram_free_kb': 377.8857421875, 'idf_major': 5.0, 'idf_minor': 5.0, 'idf_patch': 1.0, 'model_count': 6.0, 'min_free_heap': 8738328}
+original fp32 B05_0a8c51dc {"return": 80.58904601110856, "duration_s": 1.6179999999999999, "distance_m": -0.6725979944375108, "speed_mps": -0.4158508373886599, "pitch_rms": 0.3355379979819727, "roll_rms": 0.007717244332154381, "peak_force_n": 129.33135162506642, "falls": 10, "episodes": 10, "speed_std": 0.011270971565029897}
+original int16 B05_ea36b5cd {"return": 246.42295428798442, "duration_s": 1.7680000000000002, "distance_m": 0.4742420659740456, "speed_mps": 0.2636016535620552, "pitch_rms": 0.44447116414153454, "roll_rms": 0.30652336765907096, "peak_force_n": 491.67829197109603, "falls": 10, "episodes": 10, "speed_std": 0.1192002104580562}
+original int8 B05_c863ed92 {"return": 1100.4643124976608, "duration_s": 5.746, "distance_m": 2.3885846531903243, "speed_mps": 0.4132487021260324, "pitch_rms": 0.35774049160373994, "roll_rms": 0.13198437835493246, "peak_force_n": 529.3368321093947, "falls": 1, "episodes": 10, "speed_std": 0.03679703748583094}
+compact fp32 B05_45f76a60 {"return": 1324.2698008810098, "duration_s": 6.0, "distance_m": 3.631981588018738, "speed_mps": 0.6053302646697897, "pitch_rms": 0.1434598165382906, "roll_rms": 0.12100632634036626, "peak_force_n": 518.0581224590135, "falls": 0, "episodes": 10, "speed_std": 0.01276890314172136}
+compact int16 B05_57856e91 {"return": 1331.697589155476, "duration_s": 6.0, "distance_m": 3.7068045439833965, "speed_mps": 0.617800757330566, "pitch_rms": 0.1442413133858628, "roll_rms": 0.119596106707301, "peak_force_n": 522.1967385814775, "falls": 0, "episodes": 10, "speed_std": 0.01876467659720118}
+compact int8 B05_edde1b5d {"return": 1327.4604618820165, "duration_s": 6.0, "distance_m": 3.6577013024608114, "speed_mps": 0.6096168837434687, "pitch_rms": 0.1450295659794119, "roll_rms": 0.11898564527416182, "peak_force_n": 508.36887571943026, "falls": 0, "episodes": 10, "speed_std": 0.010774343011421446}
+argv[0]=
+B04 inicio 2026-11-11 10:24
+pybullet build time: Oct 21 2025 11:46:21
+{'chip_model': 9.0, 'cores': 2.0, 'revision': 2.0, 'cpu_mhz': 240.0, 'flash_kb': 16384.0, 'psram_kb': 8192.0, 'sram_total_kb': 426.1826171875, 'sram_free_kb': 377.8857421875, 'idf_major': 5.0, 'idf_minor': 5.0, 'idf_patch': 1.0, 'model_count': 6.0, 'min_free_heap': 8738328}
+original fp32 B04_56b846f2 {"n": 100000, "mean": 20709.22446, "median": 20710.0, "p95": 20711.0, "p99": 20711.0, "max": 20739.0, "min": 20704.0, "std": 1.2591416554145127}
+original int16 B04_edbb82f6 {"n": 100000, "mean": 11116.74025, "median": 11117.0, "p95": 11119.0, "p99": 11120.0, "max": 11122.0, "min": 11108.0, "std": 1.7346065656223026}
+original int8 B04_e621a02a {"n": 100000, "mean": 5889.26682, "median": 5889.0, "p95": 5891.0, "p99": 5893.0, "max": 5900.0, "min": 5882.0, "std": 1.3686953962076442}
+compact fp32 B04_acbaf5e4 {"n": 100000, "mean": 203.94273, "median": 202.0, "p95": 208.0, "p99": 208.0, "max": 1945.0, "min": 200.0, "std": 6.121946597864113}
+compact int16 B04_4313c4ba {"n": 100000, "mean": 410.31243, "median": 410.0, "p95": 411.0, "p99": 411.0, "max": 1156.0, "min": 405.0, "std": 2.445252030998031}
+compact int8 B04_0f2419bc {"n": 100000, "mean": 306.49378, "median": 307.0, "p95": 307.0, "p99": 308.0, "max": 660.0, "min": 301.0, "std": 1.2789532093082998}
+B04 fin 2026-11-11 12:08

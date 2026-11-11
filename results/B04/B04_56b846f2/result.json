@@ -1,0 +1,54 @@
+{
+ "id": "B04_56b846f2",
+ "group": "B04",
+ "timestamp": "2026-11-11T10:24:56",
+ "python": "3.11.18",
+ "host": "Windows-10-10.0.26100-SP0",
+ "measured_on_hardware": true,
+ "model": "original",
+ "precision": "fp32",
+ "platform": "esp32s3",
+ "seed": 0,
+ "repetitions": 100000,
+ "mode": "A",
+ "summary": {
+  "infer_us": {
+   "n": 100000,
+   "mean": 20709.22446,
+   "median": 20710.0,
+   "p95": 20711.0,
+   "p99": 20711.0,
+   "max": 20739.0,
+   "min": 20704.0,
+   "std": 1.2591416554145127
+  },
+  "round_trip_us": {
+   "n": 100000,
+   "mean": 24888.00812500001,
+   "median": 24903.799999719922,
+   "p95": 24995.700000090437,
+   "p99": 25067.301000049156,
+   "max": 55140.69999981075,
+   "min": 23909.09999996893,
+   "std": 199.83034871718618
+  },
+  "deadline": {
+   "cycles": 100000,
+   "misses": 100000,
+   "met_percent": 0.0,
+   "max_consecutive_misses": 100000,
+   "jitter_std_us": 199.83034871718618,
+   "jitter_p99_p50_us": 163.50100032923365
+  },
+  "action_error": {
+   "mae": 1.7818772748000811e-07,
+   "rmse": 3.034156400505184e-07,
+   "max_abs": 6.601214408874512e-06
+  },
+  "link": {
+   "timeouts": 0,
+   "crc_errors": 0,
+   "stale": 0
+  }
+ }
+}
