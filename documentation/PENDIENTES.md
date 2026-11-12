@@ -71,7 +71,9 @@ Pendiente con placa:
   compacto 0.20 / 0.41 / 0.31 ms (FP32 / INT16 / INT8); p99 a 1 o 2 us de la mediana; maximos 1.9 ms en compacto FP32 y 1.2 ms
   en INT16 (picos raros). Confirma B01. Registro: `results/hw_2026-11-09_s3.log`.
 - [ ] B06 y B07 en placa (opcional: B05 ya muestra que el compacto se comporta igual que en el virtual).
-- [ ] Confirmar GPIO4 y GPIO5 con el analizador (guia, seccion 7). Sirve ademas como verificacion independiente de B01.
+- [x] GPIO4 y GPIO5 del S3 con el analizador (2026-11-11, 12 MHz porque a 24 MHz el USB corta): GPIO4 coincide con B01 a 1 us
+  (original FP32 20711 us, compacto FP32 203 us), GPIO4 dentro de GPIO5, UART a 921600 sin errores. `results/firmware/gpio_s3/`.
+  Falta repetirlo en el ESP32 clasico si se quiere la misma verificacion alli.
 
 ## 5. Decisiones abiertas del usuario
 

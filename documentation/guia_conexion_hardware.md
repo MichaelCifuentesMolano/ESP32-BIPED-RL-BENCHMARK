@@ -61,13 +61,15 @@ La placa se alimenta y se comunica por su propio puente USB. Es el mas simple y 
 
     PC --USB--> Placa
     PC --USB--> Analizador
-                 CH0 ---- GPIO4
-                 CH1 ---- GPIO5
-                 CH2 ---- RX del ESP (GPIO3 / GPIO44)   opcional: decodifica la trama del host
-                 CH3 ---- TX del ESP (GPIO1 / GPIO43)   opcional: decodifica la respuesta
+                 CH1 (D0) ---- GPIO4
+                 CH2 (D1) ---- GPIO5
+                 CH3 (D2) ---- RX del ESP (GPIO3 / GPIO44)   opcional: decodifica la trama del host
+                 CH4 (D3) ---- TX del ESP (GPIO1 / GPIO43)   opcional: decodifica la respuesta
+
+El analizador numera los canales de CH1 a CH8 en su serigrafia; PulseView y sigrok-cli los llaman D0 a D7 (CH1 = D0).
                  GND ---- GND de la placa
 
-CH2 y CH3 permiten ver en PulseView cuando llega el ultimo byte de la trama y cuando sale la respuesta, y separar lo que tarda
+CH3 y CH4 permiten ver en PulseView cuando llega el ultimo byte de la trama y cuando sale la respuesta, y separar lo que tarda
 el ESP32 de lo que tarda Windows. A 24 MHz cada muestra dura unos 42 ns. Si PulseView reporta muestras perdidas con 4 canales,
 bajar a 12 MHz (83 ns) y anotarlo.
 
@@ -91,7 +93,7 @@ por el FT232RL; la energia, por la fuente a traves del INA226. La otra placa hac
        SDA ---> INA226 SDA     ESP32 clasico: GPIO21. ESP32-S3: GPIO8
        SCL ---> INA226 SCL     ESP32 clasico: GPIO22. ESP32-S3: GPIO9
 
-    Analizador: CH0 GPIO4, CH1 GPIO5, GND, de la placa bajo prueba.
+    Analizador: CH1 (D0) GPIO4, CH2 (D1) GPIO5, GND, de la placa bajo prueba.
 
 Todas las GND quedan unidas: fuente (-), placa bajo prueba, INA226, medidora, FT232RL y analizador. Sin tierra comun el UART falla
 y el INA226 mide mal la tension de bus.
@@ -187,7 +189,7 @@ modelo inexistente, una observacion NaN y una trama corrupta.
 
 1. **GPIO4 y GPIO5:** montaje 2, captura en PulseView a 24 MHz mientras corre B01. Deben verse pulsos en ambos canales; GPIO4 contenido
    dentro de GPIO5.
-2. **UART a 921600:** en PulseView, decodificador UART en CH2 a 921600 8N1. Los bytes deben decodificarse sin errores de trama.
+2. **UART a 921600:** en PulseView, decodificador UART en CH3 (D2) a 921600 8N1. Los bytes deben decodificarse sin errores de trama.
 3. **INA226:** con la medidora grabada (seccion 9) y la fuente encendida pero la placa bajo prueba desconectada de VIN-:
 
        python -m host.energy_runner --check --meter-port COMy --shunt-ohm 0.1
