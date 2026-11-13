@@ -1,6 +1,6 @@
 # Pendientes para la proxima sesion
 
-Corte: 2026-11-08, 15:00. Para retomar, pedir: "lee documentation/PENDIENTES.md y sigue con el proyecto".
+Corte: 2026-11-12, noche. Resumen de lo que queda: seccion 7. Para retomar, pedir: "lee documentation/PENDIENTES.md y sigue con el proyecto".
 
 ## 1. Estado
 
@@ -66,7 +66,12 @@ Pendiente con placa:
   3V3 del S3 a traves del INA226 (se mide sin el regulador del clasico); (2) el modulo INA226 necesita un puente de VBUS a VIN-
   para leer la tension de bus; (3) sin multimetro, shunt nominal 0.1 ohm sin calibrar (corrientes y potencias se reescalan por
   0.1/R real sin repetir); (4) muestreo real 1778 Hz, no 3500.
-- [ ] B03 energia, ESP32-S3 (montaje invertido: clasico medidora, S3 bajo prueba).
+- [x] B03 energia, ESP32-S3 (2026-11-12, `results/B03/B03_eb26284f`): montaje invertido, medidora el clasico (COM13, 1417
+  muestras/s), S3 por 3V3 desde el clasico, FT232RL a GPIO43/44. Prueba 6.4 ok tambien en el S3 (B01 corto igual al del 9/11).
+  Reposo 127.0 mW, deriva 0.95 mW, 0 errores, 0 perdidas. Energia atribuible (FP32 / INT16 / INT8): original 1.42 / 0.92 /
+  0.56 mJ, compacto 0.055 / 0.066 / 0.058 mJ (formatos indistinguibles). Mismas desviaciones que el clasico. Para grabar el
+  clasico con el FT232RL conectado a su UART0 hay que soltar TXD y RXD: el FT232RL tapa al CH340.
+  Estado de las placas al cierre: el clasico tiene `meter_app`, el S3 el firmware de benchmark.
 - [x] ESP32-S3 (2026-11-09, COM8, puente CH343 1A86:55D3, chip rev. 2, firmware de 5cf27ca): grabado, paridad ok (error max 2.3e-6 FP32,
   1.2e-7 enteros, rechaza modelo inexistente, NaN y trama corrupta), PSRAM 8192 kB, flash 16 MB. B01 mediana: original 20.71 / 11.12 /
   5.89 ms, compacto 0.20 / 0.41 / 0.31 ms (FP32 / INT16 / INT8). En el S3 el compacto FP32 es mas rapido que INT16 e INT8.
@@ -105,3 +110,19 @@ Pendiente con placa:
 - Ensayo provisional, compacto semilla 0, 5 episodios, datos ya borrados: INT8 camina igual que FP32 (0.61 m/s). A 120 N caen 2 a 4 de 8
   episodios. Sirve de referencia para detectar algo raro, no para citar.
 - El error maximo alto en cuantizacion (0.53 en INT16) viene de muestras fuera del rango de calibracion, no de un fallo aritmetico.
+
+## 7. Lo que queda (2026-11-12)
+
+Para el articulo (`documentation/datos_paper.md` esta al dia; lo redacta Claude Desktop):
+- [ ] Decidir el plazo de B05 (15 o 20 ms) y justificarlo en el texto (seccion 5).
+- [ ] Declarar las desviaciones de B03 (datos_paper, 5c.4).
+
+Opcional, mejora la calidad pero no bloquea:
+- [ ] Calibrar el shunt con multimetro (guia, seccion 8) y reescalar B03 por 0.1 / R real; no hace falta repetir.
+- [ ] B03 con alimentacion por 5V (pad IN-OUT del S3 puenteado o fuente regulada) para la potencia de placa completa.
+- [ ] Repetir B03 (2 o 3 corridas) si se quiere afirmar diferencias entre formatos del compacto.
+- [ ] B06 y B07 en placa.
+- [ ] GPIO4/5 con analizador en el ESP32 clasico.
+- [ ] D7: pesos del original en SRAM o PSRAM.
+- [ ] `environment.yml` en entorno limpio.
+- [ ] Decisiones de la seccion 5: D1 rodilla, barrido de B07, ESP-DL, licencia de RBIPEDO, aviso al manuscrito.
