@@ -95,6 +95,11 @@ por el FT232RL; la energia, por la fuente a traves del INA226. La otra placa hac
 
     Analizador: CH1 (D0) GPIO4, CH2 (D1) GPIO5, GND, de la placa bajo prueba.
 
+**Sin fuente regulada (montaje usado el 2026-11-12):** si el pin 5V de la medidora es solo entrada (serigrafia "5Vin", caso del S3),
+alimentar la placa bajo prueba por su pin 3V3 desde el 3V3 de la medidora: 3V3 medidora a VIN+, VIN- a 3V3 de la placa bajo prueba.
+Se mide sin el regulador de la placa; declararlo. Si el modulo INA226 trae pin VBUS (o VBS), puentearlo a VIN-: suelto, la tension
+de bus lee 0.
+
 Todas las GND quedan unidas: fuente (-), placa bajo prueba, INA226, medidora, FT232RL y analizador. Sin tierra comun el UART falla
 y el INA226 mide mal la tension de bus.
 
@@ -195,7 +200,7 @@ modelo inexistente, una observacion NaN y una trama corrupta.
        python -m host.energy_runner --check --meter-port COMy --shunt-ohm 0.1
 
    Debe dar `ina226_address` (la medidora la detecta sola entre 0x40 y 0x4F), `i_mean_a` cerca de 0, `v_mean` igual a la fuente
-   y `sample_rate_hz` cerca de 3500. Si dice que no encuentra el INA226, revisar SDA, SCL, VCC y GND.
+   y `sample_rate_hz` cerca de 1780 (medido 2026-11-12; cada muestra hace 3 lecturas I2C). Si dice que no encuentra el INA226, revisar SDA, SCL, VCC y GND.
 
 ## 8. Calibracion del shunt e incertidumbre (B03)
 
@@ -214,7 +219,7 @@ el firmware de la medidora en QEMU, que envia tramas que el host decodifica sin 
 la lectura del INA226 real, que QEMU no emula.
 
 - **Medidora:** `firmware/meter_app`, aplicacion ESP-IDF aparte. Detecta el INA226 por sus registros de identidad, convierte cada
-  140 us sin promediado (unas 3500 muestras por segundo) y envia los registros crudos por su USB a 921600 baudios. Se graba en la
+  140 us sin promediado (medido: unas 1780 muestras por segundo, limitado por las lecturas I2C) y envia los registros crudos por su USB a 921600 baudios. Se graba en la
   placa que no se mide:
 
       . $HOME\esp\esp-idf\export.ps1

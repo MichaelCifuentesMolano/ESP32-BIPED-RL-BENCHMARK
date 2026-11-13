@@ -57,8 +57,16 @@ Registro: `results/hw_2026-11-08.log`. B01 sobrescribio las carpetas del 7/11 (m
 
 Pendiente con placa:
 
-- [ ] B03 energia: el codigo existe (`firmware/meter_app`, `host/energy_runner.py`) y se probo con medidora simulada; falta el
-  montaje con el INA226 real y calibrar el shunt (guia, secciones 8 y 9).
+- [x] B03 energia, ESP32 clasico (2026-11-12, `results/B03/B03_55b404bd`): medidora el S3 (COM8, INA226 en 0x44), enlace por
+  FT232RL (COM9, latency timer 1 ms) al UART0 del clasico sin su USB. Prueba 6.4 ok: el CH340 del clasico no choca con el FT232RL
+  (B01 corto por COM9 igual al de USB: `results/B01/B01_2e59b460` y vecinos de 100 muestras). Reposo 145.6 mW, deriva 0.75 mW,
+  0 errores, 0 perdidas. Energia atribuible por inferencia (FP32 / INT16 / INT8): original 1.21 / 1.00 / 0.61 mJ, compacto
+  0.090 / 0.085 / 0.069 mJ. En el compacto las diferencias entre formatos son del orden de la deriva: no se afirman.
+  Desviaciones a declarar: (1) el pin 5V del S3 es "5Vin", solo entrada, asi que el clasico se alimenta por su pin 3V3 desde el
+  3V3 del S3 a traves del INA226 (se mide sin el regulador del clasico); (2) el modulo INA226 necesita un puente de VBUS a VIN-
+  para leer la tension de bus; (3) sin multimetro, shunt nominal 0.1 ohm sin calibrar (corrientes y potencias se reescalan por
+  0.1/R real sin repetir); (4) muestreo real 1778 Hz, no 3500.
+- [ ] B03 energia, ESP32-S3 (montaje invertido: clasico medidora, S3 bajo prueba).
 - [x] ESP32-S3 (2026-11-09, COM8, puente CH343 1A86:55D3, chip rev. 2, firmware de 5cf27ca): grabado, paridad ok (error max 2.3e-6 FP32,
   1.2e-7 enteros, rechaza modelo inexistente, NaN y trama corrupta), PSRAM 8192 kB, flash 16 MB. B01 mediana: original 20.71 / 11.12 /
   5.89 ms, compacto 0.20 / 0.41 / 0.31 ms (FP32 / INT16 / INT8). En el S3 el compacto FP32 es mas rapido que INT16 e INT8.
