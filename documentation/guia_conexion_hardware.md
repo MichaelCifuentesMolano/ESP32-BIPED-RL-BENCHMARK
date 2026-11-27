@@ -138,7 +138,7 @@ Con todo desconectado de la corriente:
 4. **Latency timer del FT232RL:** Administrador de dispositivos > Puertos > USB Serial Port > Propiedades > Configuracion de puerto >
    Opciones avanzadas > Latency Timer = **1 ms**. Anotar el valor. Los puentes CH340 y CP210x no tienen este ajuste; anotarlo
    tambien, porque explica diferencias en B05 entre montajes.
-5. Activar el entorno: `C:\Users\Maicol\miniforge3\envs\latiniot\python.exe`, o `conda activate latiniot` desde la consola de Miniforge.
+5. Activar el entorno: `<miniforge>\envs\latiniot\python.exe`, o `conda activate latiniot` desde la consola de Miniforge.
 
 ## 6. Primer encendido, placa por placa
 
